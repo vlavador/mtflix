@@ -1,8 +1,10 @@
-import React from 'react'
+import React,{Fragment} from 'react'
 const MovieCast = ({Cast}) => {
  
     return(
-        <ul className="movie-cast cast-design grid">
+        <Fragment>
+            <h2>Cast</h2>
+            <ul className="movie-cast cast-design grid">
                {Cast.slice(0,6).map((cast,index) => { return( 
                 <li xs={4} className="" key={index}>  
                     <div>
@@ -16,6 +18,8 @@ const MovieCast = ({Cast}) => {
             )
           })}
         </ul>
+        </Fragment>
+      
     )
 }
 export default MovieCast
