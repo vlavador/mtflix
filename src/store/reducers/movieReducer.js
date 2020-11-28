@@ -1,5 +1,5 @@
   
-const initState ={LatestMovies:[],PopularMovies:[],MovieDetails:[],MovieCredit:[]};
+const initState ={LatestMovies:[],PopularMovies:[],MovieDetails:[],MovieCredit:[],MovieReview:[],SimilarMovie:[],MovieRecommendation:[],MovieCrew:[]};
 
 const movieReducer = (state = initState,action) =>{
     switch (action.type){
@@ -26,9 +26,29 @@ const movieReducer = (state = initState,action) =>{
             
             state = {
                 ...state,
-                MovieDetails:MovieDetails
+                MovieDetails:MovieDetails,
+              
             }
             return state;
+
+            case'FETCH_NULLMOVIEDETAIL':
+            let NullMovieDetails = action.payload
+            
+            state = {
+                ...state,
+                MovieDetails:NullMovieDetails
+              
+            }
+            return state;
+
+            case'CLEAR_MOVIEDETAILS':
+            let movieDetails = action.payload
+            
+            state = {
+                ...state,
+                MovieDetails:movieDetails
+             }
+             return state
         
             case'FETCH_MOVIECREDIT':
             let MovieCredits = action.payload
@@ -38,6 +58,33 @@ const movieReducer = (state = initState,action) =>{
               MovieCredit:MovieCredits
             }
             return state;
+
+            case'FETCH_SIMILAR_MOVIE':
+            let similar= action.payload
+            
+            state = {
+                ...state,
+                SimilarMovie:similar
+             }
+             return state;
+
+             case'FETCH_MOVIE_RECOMMENDATION':
+             let recommendation = action.payload
+             
+             state = {
+                 ...state,
+                 MovieRecommendation:recommendation
+              }
+              return state;
+
+              case'FETCH_MOVIE_REVIEW':
+              let movieReview = action.payload
+              
+              state = {
+                  ...state,
+                  MovieReview:movieReview
+               }
+             return state;
 
              
             default:

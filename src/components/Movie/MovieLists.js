@@ -2,7 +2,7 @@ import React,{Fragment} from 'react'
 import {Link} from 'react-router-dom'
 const MovieLists = (props) => {
     let {movieList} = props;
-    console.log(movieList)
+
     const MovieTrend = movieList.map(movie => {
         return( 
             <li key={movie.id}>

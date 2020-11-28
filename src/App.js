@@ -10,7 +10,7 @@ function App() {
 
     <BrowserRouter>
     <div className="App">
-    <NavigationMenu /> 
+    {/**<NavigationMenu /> */}
       <Switch>
       <Route exact path='/' component={PopularMovies} />
       <Route exact path='/movie/:id' component={MovieDetails} />

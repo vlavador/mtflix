@@ -7,7 +7,7 @@ class LatestMovie extends Component{
         this.props.getlatestmovie();
     }
     render(){
-        console.log(this.props)
+   
         return(
             <div>
 
