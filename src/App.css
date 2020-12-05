@@ -145,9 +145,7 @@ width:200px;
     margin-bottom: 30px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
 }
-.movie-review{
 
-}
 .reviewauthor{
     font-size: 1.3em!important;
     font-weight: 700;
@@ -161,6 +159,7 @@ width:200px;
     margin-bottom: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px;
     padding: 1.25rem;
+    font-size: 1rem;
   
    
 }
@@ -237,6 +236,7 @@ width: 250px;
 }
 
 /**movie design */
+
 .moviedetailtitle{
     margin: 0;
     padding: 0;
@@ -249,15 +249,94 @@ width: 250px;
     font-weight: 600;
     font-size: 1.3em;
 }
-.overview-info p{
-
+/** All Cast css*/
+.background{
+    background: rgba(18.24%, 18.43%, 19.61%, 1);
+    padding: 10px 0px;
+}
+.background img{
+    width: 68px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.align-center{
+    align-items: center;
+}
+.allcastgrid{
+    grid-template-columns: 1fr 1fr;
+}
+.allcastgrid ul{
+    padding: 0px;
+}
+.allcastgrid li {
+    list-style: none;
+    
+}
+.allcastflex{
+    text-align: left;
+    margin-top: 10px;
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-start;
+    
+    align-items: center;
+ 
 }
 
+.count{
+    display: flex;
+    align-items: center;
+}
+.count h2 {
+    margin: 0;
+}
+.count span{
+    font-weight: 400;
+    opacity: 0.6;
+    font-size: 1.4em;
+    margin: 0 10px;
+}
+.allcastflex p {
+    margin:0px;
+    font-size:1em;
+    font-weight: 700;
+}
+.allcastflex img{
+    border-radius: 4px;
+    background-color: #dbdbdb;
+    background-size: 50%;
+    border: 1px solid #d7d7d7;
+}
+.noImage{
+    width: 66px;
+    height: 66px;
+}
+.allcastpad{
+    padding: 0px 15px;
+}
+.allcast-content{
+    padding: 0px 20px;
+    color:#fff
+
+}
+.allcast-content h2{
+    font-size: 2.6em;
+    font-weight: 700;
+    margin: 0px;
+}
+.allcast-content a{
+text-decoration: none;
+color:#fff;
+opacity: 0.6;
+font-size: 1em;
+font-weight:700;
+}
 /**Media Query**/
 
 @media only screen and (max-width: 1200px) {
     .review-design{
-        grid-template-columns: repeat(1,1fr);
+        grid-template-columns: repeat(2,1fr);
     }
 }
 
@@ -291,8 +370,9 @@ width: 250px;
     }
   
     .movie-crews {
-        grid-column: 1/13;
+        grid-template-rows: 1/13;
     }
+   
     
     .movie-facts {
         grid-column: 1/13;
@@ -323,6 +403,8 @@ width: 250px;
         padding: 0 15px 10px 15px;
     }
     .custom-padding{padding:.5em;}
+
+ 
     
 }
 

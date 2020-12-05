@@ -1,0 +1,62 @@
+.personal-details{
+    grid-column: 1/1;
+
+}
+.otherdetails{
+    grid-column: 2/13;
+    
+ 
+}
+.credit-gap{
+    gap: 20px;
+}
+.credit-width{
+    max-width: 815px;
+}
+.credit{
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    grid-template-columns:repeat(10,1fr);
+    padding: 0px;
+    list-style: none;
+    gap:10px;
+    box-sizing: border-box;
+    }
+.credit li{
+    width: 150px;
+}
+.flex{
+    display: flex;
+}
+.pcredit{
+    list-style: none;
+    padding: 0px;
+}
+.pcredit li{
+    border:1px solid #dedede;
+    padding:10px 10px
+}
+.pflex{
+    align-items: stretch;
+}
+.pflex h2{
+    margin:0px;
+}
+.pflex button{
+    border: none;
+    background: none;
+    font-size: 1.1em;
+    padding: 6px;
+    cursor:pointer;
+}
+.pflex button:hover, button:active, button:visited, button:link, button:focus{
+border:none;
+outline: none;
+}
+.pflex span{
+    font-size: 1.1em; 
+}
+.active{
+    text-decoration: underline;
+}

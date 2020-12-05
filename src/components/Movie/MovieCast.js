@@ -18,6 +18,7 @@ const MovieCast = ({Cast}) => {
         )
       })}
     </ul>
+
     </Fragment>
     )
     return(
