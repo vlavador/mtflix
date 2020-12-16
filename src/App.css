@@ -1,6 +1,7 @@
 .container {
    
     margin: 10px auto;
+    padding: 0px 15px;
    
    
 }
@@ -9,6 +10,9 @@
 }
 .flex{
     display: flex;
+}
+.padding-zero{
+    padding: 0px;
 }
 .popular-movie{
     grid-template-columns: repeat(5,1fr);
@@ -45,9 +49,10 @@
 
 /**Movie Content design*/
 .movie-content{
-  
-    gap: .5em;
-   white-space: normal;
+    padding: 15px 10px 12px 10px;
+    white-space: normal;
+    grid-template-columns: 4fr 1fr;
+    gap:20px
 }
 .movie-content h2{
 margin: 0px;
@@ -56,6 +61,11 @@ margin: 0;
 width: 100%;
 word-wrap: normal;
 overflow-wrap: break-word
+}
+.movie-content a{
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
 }
 .movie-content p {
 margin: 0px;
@@ -332,6 +342,79 @@ opacity: 0.6;
 font-size: 1em;
 font-weight:700;
 }
+
+.card-body{
+  
+
+    white-space: normal;
+ 
+ 
+    line-height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+}
+.card-body p{
+    font-size: 1em;
+}
+/**All Review*/
+.review-grid{
+    grid-template-columns: 3fr 1fr;
+    gap:20px
+}
+.review-grid ul {
+    padding: 0px;
+}
+.review-grid ul li{
+    list-style: none;
+}
+.card{
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px ;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem; 
+    padding:10px 20px;
+}
+.view-all-right{
+    float: right;
+    margin-top: 10px;
+}
+.view-all-left{
+   font-size: 1.8em;
+   font-weight: 700;
+}
+.text-center{
+    text-align: center;
+    margin-top: 10px;
+}
+.review-info h2,p{
+margin:10px 0px 0px 0px;
+}
+.review-info {
+    margin: 0px;
+    }
+
+.btn-design{
+    font-size: 12px;
+    color: #fff;
+    background-color: #212121;
+    padding: 5px 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 28px;
+    transition: ease .3s all;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0px 5px;
+}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
 /**Media Query**/
 
 @media only screen and (max-width: 1200px) {
@@ -342,9 +425,10 @@ font-weight:700;
 
 @media only screen and (max-width: 991px) {
     
-    .movie-crews {
-        grid-column: 1/10;
-    }
+   .movie-content{
+    grid-template-columns: 1fr
+   }
+   
   
     .cast-design {
         grid-template-columns: repeat(4,1fr);
@@ -353,10 +437,16 @@ font-weight:700;
     .review-design{
         grid-template-columns: repeat(1,1fr);
     }
+    .popular-movie{
+        grid-template-columns: repeat(3,1fr);
+    }
    
 } 
 
 @media only screen and (max-width:  767px) {
+    .popular-movie{
+        grid-template-columns: repeat(3,1fr);
+    }
     .cast-design {
         grid-template-columns: repeat(3,1fr);
         gap: 10px;
@@ -383,12 +473,18 @@ font-weight:700;
         grid-gap: 0px;
     }
 
-
+    .review-grid{
+        grid-template-columns: 1fr;
+    }
 
 }
 @media only screen and (max-width: 575px) {
+    .popular-movie{
+        grid-template-columns: repeat(2,1fr);
+    }
     .cast-design {
         grid-template-columns: repeat(2,1fr);
+
 
         
     }
@@ -403,9 +499,15 @@ font-weight:700;
         padding: 0 15px 10px 15px;
     }
     .custom-padding{padding:.5em;}
-
- 
     
+
+}
+@media only screen and (max-width: 420px) {
+    .allcastgrid{
+        grid-template-columns: 1fr;
+    }
+    
+   
 }
 
 

@@ -1,5 +1,14 @@
   
-const initState ={LatestMovies:[],PopularMovies:[],MovieDetails:[],MovieCredit:[],MovieReview:[],SimilarMovie:[],MovieRecommendation:[],MovieCrew:[]};
+const initState ={
+    LatestMovies:[],
+    PopularMovies:[],
+    MovieDetails:[],
+    MovieCredit:[],
+    MovieReview:[],
+    SimilarMovie:[],
+    MovieRecommendation:[],
+    MovieCrew:[],
+    totalpages:null};
 
 const movieReducer = (state = initState,action) =>{
     switch (action.type){
@@ -14,12 +23,32 @@ const movieReducer = (state = initState,action) =>{
 
         case'FETCH_POPULARMOVIE':
             let PopularMovies = action.payload
+            let totalpage = action.payload.total_pages
             
             state = {
                 ...state,
-                PopularMovies:PopularMovies
+                PopularMovies:PopularMovies,
+                totalpages:totalpage
             }
             return state;
+
+        case'FETCH_OTHER_POPULAR_MOVIES':
+            let  otherpopularmovie = action.payload
+            state = {
+               ...state,
+               PopularMovies:otherpopularmovie
+            
+            }
+            return state;
+
+        case'CLEAR_POPULAR_MOVIE':
+            let clear = action.payload
+            
+            state = {
+                ...state,
+                PopularMovies:clear
+             }
+             return state
          
         case'FETCH_MOVIEDETAILS':
             let MovieDetails = action.payload

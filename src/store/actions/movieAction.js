@@ -14,6 +14,18 @@ export const getPopularMovies = () =>{
     }
     
 }
+
+export const getOtherPopularMovies = (requestpage) =>{
+    return(dispatch,getState) => {
+       
+
+       
+        let page = requestpage
+        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&page=${page}`).then((res) => dispatch({type:'FETCH_OTHER_POPULAR_MOVIES',payload:res.data})).catch(err => console.log(err))
+
+    }
+}
+
 /**Get the Movie Details */
 export const getMovieDetails = (id) =>{   
     return(dispatch) => {

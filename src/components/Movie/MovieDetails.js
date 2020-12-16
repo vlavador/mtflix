@@ -54,12 +54,12 @@ class MovieDetails extends Component{
                 </section>
                 <section className="content">
                     <div className="container grid movie-content">
-                        <div className="movie-crews">
-                           <div className=""> <MovieCast Cast= {this.props.MovieCredit.cast}/></div>
-                      <div className="movie-review"><MovieReview Review = {this.props.MovieReview} /></div>  
+                        <div className="">
+                           <div className=""> <MovieCast Cast= {this.props.MovieCredit.cast} id={this.props.match.params.id}/></div>
+                      <div className="movie-review"><MovieReview Review = {this.props.MovieReview} id={this.props.match.params.id} /></div>  
                         </div>
                  
-                       <div className="movie-facts"><OtherDetails OtherDetails = {this.props.MovieDetails}/></div>
+                       <div className=""><OtherDetails OtherDetails = {this.props.MovieDetails}/></div>
                     </div>  
                 </section>
               

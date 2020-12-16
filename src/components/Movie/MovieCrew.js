@@ -11,6 +11,7 @@ const MovieCrew = ({Crew}) =>{
             )
           })}
         </ul>
+   
         </Fragment>
     )
     return(

@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react'
+import { Link } from 'react-router-dom'
 import SkeletonArticle from '../skeletons/SkelotonArticle'
-const MovieCast = ({Cast}) => {
+const MovieCast = ({Cast,id}) => {
     let cast = Cast === undefined ? (<SkeletonArticle />):(
         <Fragment>
         <h2>Cast</h2>
@@ -18,6 +19,8 @@ const MovieCast = ({Cast}) => {
         )
       })}
     </ul>
+    <Link to={`/movie/${id}/cast`}>View Cast and Crew</Link>
+    
 
     </Fragment>
     )
