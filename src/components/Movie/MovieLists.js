@@ -1,5 +1,7 @@
 import React,{Fragment} from 'react'
 import {Link} from 'react-router-dom'
+import nomoviebg from '../../assets/nomoviebg.svg'
+import test from '../../assets/TEST.png'
 const MovieLists = ({movieList,Created}) => {
 
 
@@ -7,8 +9,12 @@ const MovieLists = ({movieList,Created}) => {
         movieList.map(movie => {
             return( 
                 <li key={movie.id}>
-                    <div className="movie-img">
-                    <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + movie.poster_path}  alt="Lights"></img>
+                    <div className="movie-img bg-color">
+                        {
+                            movie.poster_path === null ?
+                            (<img src={test}/>) :
+                            (<img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + movie.poster_path}  alt="Lights" />)
+                        }
                     </div>
                     <div className="movie-content">
                         <Link to={'/movie/' +movie.id}>{movie.title}</Link>

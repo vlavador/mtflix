@@ -2,7 +2,7 @@ import React,{Fragment} from 'react'
 
 const OtherDetails = ({OtherDetails}) => {
     let otherDetails = OtherDetails.length !==0? ( <Fragment>
-        <h2>Facts</h2>
+        <h2 className="header-title">Facts</h2>
         <div className="otherdetails">
         <p>Homepage</p>
             {OtherDetails.homepage === undefined ? (<span>No Homepage Found</span>):

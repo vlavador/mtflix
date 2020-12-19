@@ -1,15 +1,27 @@
 import React, { Fragment } from 'react'
+import noImg from '../../assets/noimage.png'
 const PersonInfo = ({details}) =>{
     return(
         <Fragment>
-            <div>
-                <img className="img-responsive" src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${details.profile_path}`}/>
+            <div className="bg-color">
+            {
+                details.profile_path === null ?
+                (<img src={noImg} />)
+                :
+                ( <img className="img-responsive" src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${details.profile_path}`}/>)
+            }
+               
             </div>
-            <div className="link">
-
-            </div>
             <div>
-                <h3>Personal Info</h3>
+            <div>
+            <h3>{details.name}</h3>
+            <h4>Biography:</h4>
+            <p>{details.biography}</p>
+            </div>
+            <div className="personal-info">
+            <h3>Personal Info</h3>
+                <div className="other-info">
+              
                 <div>
                     <p>Known for</p>
                     <span>{details.known_for_department}</span>
@@ -26,6 +38,8 @@ const PersonInfo = ({details}) =>{
                     <p>Place of Birth</p>
                     <span>{details.place_of_birth}</span>
                 </div>
+            </div>
+            </div>
             </div>
         </Fragment>
     )

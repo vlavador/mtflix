@@ -13,6 +13,7 @@ class AllReview extends Component{
     componentDidMount(){
         this.props.getMovieDetails(this.props.match.params.id)
         this.props.getMovieReview(this.props.match.params.id)
+        
     }
     addSpace = (data) =>{
         let newcode = data.split('\n\r\n').map((code) => <p>{code}</p>);
@@ -44,7 +45,7 @@ class AllReview extends Component{
                     <div className="card-body">{this.addSpace(review.content)}</div>
                 </div>
                 <div className="text-center">
-                    <a href={`https://www.themoviedb.org/review/${review.id}`}>View Review</a>
+                    <a href={`https://www.themoviedb.org/review/${review.id}`} className="link">View Review</a>
                 </div>
             </li>
             )})) 
@@ -88,7 +89,7 @@ class AllReview extends Component{
                         <div >
                         <div>
                         <span className="view-all-left">Reviews:</span>
-                          <span className="view-all-right"><a href={`https://www.themoviedb.org/movie/${this.props.MovieDetails.id}/reviews`}> View All Review</a></span>
+                          <span className="view-all-right"><a href={`https://www.themoviedb.org/movie/${this.props.MovieDetails.id}/reviews`} className="link"> View All Review</a></span>
 
                         </div>
                        

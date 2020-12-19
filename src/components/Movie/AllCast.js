@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getMovieCredit,getMovieDetails} from '../../store/actions/movieAction'
 import nullCast from  '../../assets/null-cast.svg'
+import m66 from  '../../assets/m66.png';
+import f66 from  '../../assets/f66.png';
+import nobg from  '../../assets/nobg.png';
 
 class AllCast extends Component{
     
@@ -20,7 +23,13 @@ class AllCast extends Component{
                 <Link to={`/person/${cast.id}`}>
                 {
                     cast.profile_path === null ? (
-                       <img src={nullCast} className="noImage"/>     
+                        <Fragment>
+                            {
+                                cast.gender === 1 ? 
+                                (<img src={f66} className="noImage"/>):
+                                (<img src={m66} className="noImage"/>)
+                            }
+                            </Fragment>  
                     ) : (
                         <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+cast.profile_path}/>
                     )
@@ -44,7 +53,14 @@ class AllCast extends Component{
                     <Link to={`/person/${crew.id}`}>
                     {
                         crew.profile_path === null ? (
-                           <img src={nullCast} className="noImage"/>     
+                            <Fragment>
+                            {
+                                crew.gender === 1 ? 
+                                (<img src={f66} className="noImage"/>):
+                                (<img src={m66} className="noImage"/>)
+                            }
+                            </Fragment>
+                          
                         ) : (
                             <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+crew.profile_path}/>
                         )
@@ -76,7 +92,7 @@ class AllCast extends Component{
                                     <div>
                                         {this.props.MovieDetails.poster_path === null ? 
                                         (
-                                            <img src={nullCast} className="noImage"/> 
+                                            <img src={nobg} className="noImage"/> 
                                         ) : (
                                             <img src={'https://image.tmdb.org/t/p/w116_and_h174_face'+this.props.MovieDetails.poster_path}/>
                                         )

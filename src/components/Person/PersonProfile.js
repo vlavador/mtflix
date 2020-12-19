@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import '../../css/person.css'
 import {connect} from  'react-redux'
 import {getPersonalDetails,getCombineCredits,getExternalLink} from '../../store/actions/personAction'
@@ -20,26 +20,31 @@ class PersonProfile extends Component{
         this.setState({
             type:type
         })
-        console.log(this.state.type)
+  
     }
     
     render(){
       
-     
+      
    
         return(
-            <section className="container">
-                <div className=" credit-gap grid">
-                    <div className="personal-details">
+            <Fragment>
+            <section className="">
+                <div className="container">
+                    <div className="personal-details credit-gap grid">
                         <PersonInfo details={this.props.detail}/>
-                    </div>
-                    <div className="otherdetails" >
-                        <PersonCredit type ={this.state.type} changeType={this.changeType} otherdetail={{"name":this.props.detail.name,"biography":this.props.detail.biography}} credits={this.props.credits} />
-                    </div>
+                    </div>             
                 </div>
             
 
             </section>
+            <section>
+                <div className="container">
+                    <PersonCredit type ={this.state.type} id={this.props.match.params.id} changeType={this.changeType} credits={this.props.credits} />
+                </div>
+       
+            </section>
+            </Fragment>
         )
     }
 }

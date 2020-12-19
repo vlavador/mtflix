@@ -1,35 +1,35 @@
 import React, { Component,Fragment } from 'react'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 import {getPopularMovies,getOtherPopularMovies} from '../../store/actions/movieAction'
 import MovieList from './MovieLists'
+import SkeletonMovie from '../skeletons/SkeletonMovie'
+import PageNotFound from './PageNotFound'
 
 class PopularMovies extends Component{
-        state = {
-            activePage:1
-        }
+      
     componentDidMount(){
-        this.props.getPopularMovies()
-    }
- 
 
+        this.props.clearmovie()  
+        this.props.getPopularMovies(this.props.match.params.id)
+
+    }
+    
     previousPage = () =>{
         this.props.clearmovie()
-        this.props.getOtherPopular(this.state.activePage-1)
-        let newPage = this.state.activePage-1
-        this.setState({
-            activePage:newPage
-        })
-    }
-   nextPage = () =>{
-    this.props.clearmovie()
-       this.props.getOtherPopular(this.state.activePage+1)
-       let newPage = this.state.activePage +1
-       this.setState({
-           activePage:newPage
-       })
-       window.scrollTo(0,0);
-   }
+       
+        this.props.getPopularMovies(parseInt(this.props.match.params.id)-1)
+        window.scrollTo(0, 0)
+         
+       }
+      nextPage = () =>{
+        this.props.clearmovie()
+        this.props.getPopularMovies(parseInt(this.props.match.params.id)+1)
+        window.scrollTo(0, 0)
+       
+      }
 
+ 
 
     getCreated = (date) => {
         let dates = new Date(date)
@@ -41,56 +41,62 @@ class PopularMovies extends Component{
         
     }
     render(){
-        console.log(this.props.popularMovies)
-      
+        console.log(this.props.totalpage);
+        console.log(this.props.match.params.id)
         let {popularMovies} = this.props;
-    
-        let PopularMovies = popularMovies.length === 0 ? 
-            (<div>wala</div>):
-            (<MovieList movieList = {popularMovies.results}  Created={this.getCreated}/>);
-        return(
+
+
+        let PopularMovie = this.props.popularMovies === null ? (<PageNotFound />) : (
+           
             <section className="container">
+            <div className="flex" style={{"alignItems:": "center"}}>
+                <div style={{"flexGrow": "8"}}>
+                    <h2 style={{"margin":"0px"}}>Popular Movies</h2>
+                </div>
                 <div>
-                <div>
-                    <h2>Popular Movies</h2>
+                {
+                    this.props.totalpage === null ? (null) : (
+                        <Fragment>
+                        <span className="pagedesign">Page:</span>
+                        <span>{this.props.match.params.id}/{this.props.totalpage}</span>
+                        </Fragment>
+
+                    )
+                }
                    
                 </div>
-
-                    <div> <span className="pagedesign">Page:</span> <span>{this.state.activePage}/{this.props.totalpage}</span></div>
-                </div>
-              
-                <ul className="popular-movie grid ">
-                {PopularMovies}
-                </ul>
-                <div className="container text-right padding-zero">
-                {
-                this.props.totalpage === null ? (null):(
-                    <Fragment>                        {    this.state.activePage === 1 ? (null):
-                                        (
-                                        <span onClick={this.previousPage} className="btn-design">Previous</span>
-                                        )
-
-                        }
-                   {
-                    this.state.activePage === this.props.totalpage ? (null):
-                                (
-                                    <span onClick={this.nextPage} className="btn-design">Next</span>
-                                )   
-                   }
-                                                                        
-                             
-                   </Fragment>
-
-                  
-
-                         
-                )
-              }
-
-                </div>
-          
-              <h1>dasdsadsa</h1>
-            </section>
+            </div>
+            <ul className="popular-movie grid ">
+            {
+                popularMovies.length === 0 ? 
+            (<SkeletonMovie />):
+            (<MovieList movieList = {popularMovies.results}  Created={this.getCreated}/>)
+            }
+            </ul>
+            <div className="container text-right padding-zero">
+            {
+            this.props.totalpage === null ? 
+            (null):(
+                <Fragment>
+                    {this.props.match.params.id === "1" ? 
+                        (null):
+                        (<Link to={`/movie/popular/${parseInt(this.props.match.params.id)-1}`} onClick={this.previousPage} className="btn-design">Previous</Link>)
+                    }
+                    {parseInt(this.props.match.params.id) === this.props.totalpage ? 
+                        (null):(<Link to={`/movie/popular/${parseInt(this.props.match.params.id)+1}`} onClick={this.nextPage} className="btn-design">Next</Link>)   
+                    }           
+               </Fragment>
+            )
+            }
+            </div>
+        </section>
+        )
+        return(
+          <Fragment>
+            {
+                PopularMovie
+            }
+          </Fragment>
         )
     }
 }
@@ -103,9 +109,9 @@ const mapStatetoProps = (state) => {
 }
 const mapDispatchtoProps = (dispatch) => {
     return {
-        getPopularMovies: () => {dispatch(getPopularMovies())},
+        getPopularMovies: (id) => {dispatch(getPopularMovies(id))},
         getOtherPopular: (page) => {dispatch(getOtherPopularMovies(page))},
-        clearmovie: () => { dispatch({type:'CLEAR_POPULAR_QMOVIE',payload:[]})}
+        clearmovie: () => { dispatch({type:'CLEAR_POPULAR_MOVIE',payload:[]})}
     }
 
 }

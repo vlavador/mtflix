@@ -8,9 +8,9 @@ export const getLatestMovie = () =>{
     
 }
 
-export const getPopularMovies = () =>{   
+export const getPopularMovies = (requestpage) =>{   
     return(dispatch) => {
-        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}`).then((res) => dispatch({type:'FETCH_POPULARMOVIE',payload:res.data})).catch(err => console.log(err)) 
+        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&page=${requestpage}`).then((res) => dispatch({type:'FETCH_POPULARMOVIE',payload:res.data})).catch(err => dispatch({type:'FETCH_ERROR_POPULAR_MOVIE',payload:null})) 
     }
     
 }

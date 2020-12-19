@@ -8,6 +8,7 @@ import PersonProfile from './components/Person/PersonProfile';
 import AllCast from './components/Movie/AllCast';
 import AllReview from './components/Movie/AllReview';
 import Home from './components/Home';
+import SkeletonMovieDetails from './components/skeletons/SkeletonMovieDetails';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Switch>
       <Route exact path='/' component={Home} />
      <Route exact path='/movie/popular/:id' component={PopularMovies} />
+     <Route exact path='/movie/skeleton' component={SkeletonMovieDetails}/>
       <Route exact path='/movie/:id' component={MovieDetails} />
       <Route exact path='/movie/:id/cast' component={AllCast}/>
       <Route exact path='/movie/:id/review' component={AllReview}/>

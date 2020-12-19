@@ -6,6 +6,7 @@ const MovieReview = ({Review,id}) => {
     let review =  Review.length >= 1 ? ( 
     <Fragment>
     <div>
+    <h2 className="header-title">Review</h2>
     <ul className="review-design grid">
            {Review.slice(0,2).map((review,index) => { return( 
           

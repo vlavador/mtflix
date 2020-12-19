@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import MovieCredit from './MovieCredit'
 import TvCredit from './TvCredit'
 
-const PersonCredit = ({otherdetail,credits,changeType,type}) => {
+const PersonCredit = ({otherdetail,credits,changeType,type,id}) => {
   
     let filterMovie = credits.length === 0 ? (null):(
         credits.cast.filter(cred => {return cred.media_type === "movie"})
@@ -49,40 +49,40 @@ const PersonCredit = ({otherdetail,credits,changeType,type}) => {
     
   
     
-
+ 
     return(
         <Fragment>
-            <div><h3>{otherdetail.name}</h3></div>
-            <div><p>{otherdetail.biography}</p></div>
-            <div className="credit-width">
-         
-            <ul className="grid credit">
-                {cre}
-            </ul>
+            
+            <div className="">
+                <h4>Known For:</h4>
+                <ul className="grid credit">
+                    {cre}
+                </ul>
             </div>
 
             <div>
-            <div className="flex pflex">
-            <div style={{"flexGrow": "8"}} >
-            <h2>Acting</h2>
-            </div>
-         
-            <div>   
-        
-            <button className={ type == "movie" ? ("active"):(null)} onClick={() => changeType("movie")}>Movie</button>
-            <span>/</span>
-            <button className={ type == "tv" ? ("active"):(null)}  onClick={() => changeType("tv")}>TV</button></div>
-            </div>
-          
+                <div className="flex pflex">
+                    <div style={{"flexGrow": "8"}} >
+                    <h2>Acting</h2>
+                    </div>  
+                <div>   
+                    <button className={ type == "movie" ? ("active"):(null)} onClick={() => changeType("movie")}>Movie</button>
+                    <span>/</span>
+                    <button className={ type == "tv" ? ("active"):(null)}  onClick={() => changeType("tv")}>TV</button></div>
+                </div>
+                <div>
+
+                </div>
+           
+                    {
+                        type == "movie" ? <MovieCredit filterMovie = {filterMovie} id = {id}/> : <TvCredit filterTv = {filterTV} id={id} />
+                    }
                 
-             
-
-
-            <ul className="pcredit"> 
+            <div>
                 {
-                    type == "movie" ? <MovieCredit filterMovie = {filterMovie}/>: <TvCredit filterTv = {filterTV}/>
+
                 }
-                </ul>
+            </div>
             </div>
     
         </Fragment>

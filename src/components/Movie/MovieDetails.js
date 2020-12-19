@@ -7,7 +7,9 @@ import MovieRecommendation from './MovieRecommendation'
 import MovieReview from './MovieReview'
 import OtherDetails from './OtherDetails'
 import SimilarMovies from './SimilarMovies'
-import SkeletonArticle from '../skeletons/SkelotonArticle'
+import Loader from 'react-loader-spinner'
+import nobg from '../../assets/nobg.png'
+
 
 class MovieDetails extends Component{
     componentDidMount(){
@@ -18,7 +20,8 @@ class MovieDetails extends Component{
         this.props.getSimilarMovie(this.props.match.params.id)
         this.props.getMovieRecommendation(this.props.match.params.id)
 
-        
+       
+    
     
     }
     render(){
@@ -32,13 +35,18 @@ class MovieDetails extends Component{
          </div>) : 
            (
             this.props.MovieDetails.length === 0 ? (
-                <SkeletonArticle />
+                <Loader type="Puff" color="#00BFFF" height={80} width={80} />
             ) : (
                 <Fragment>
                 <section className='Movie-Background' style={{backgroundImage:`radial-gradient(circle at 20% 50%, rgba(11.76%, 18.43%, 23.53%, 0.98) 0%, rgba(18.82%, 25.49%, 30.59%, 0.88) 100%),url(https://image.tmdb.org/t/p/w1400_and_h450_face/${this.props.MovieDetails.backdrop_path})`}}>
                     <div className="container grid moviedetails">
-                        <div className="poster">
-                        <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + this.props.MovieDetails.poster_path}  alt="Lights"  />
+                        <div className="poster bg-color">
+                        {
+                            this.props.MovieDetails.poster_path === null ?
+                             (<img src={nobg} /> ) 
+                            : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + this.props.MovieDetails.poster_path}  alt="Lights"  />)
+                        }
+                     
                         </div>
                         <div className="movie-padding">
                             <div className="moviedetailscolor">
@@ -55,7 +63,7 @@ class MovieDetails extends Component{
                 <section className="content">
                     <div className="container grid movie-content">
                         <div className="">
-                           <div className=""> <MovieCast Cast= {this.props.MovieCredit.cast} id={this.props.match.params.id}/></div>
+                           <div className="cast-padding-bottom"> <MovieCast Cast= {this.props.MovieCredit.cast} id={this.props.match.params.id}/></div>
                       <div className="movie-review"><MovieReview Review = {this.props.MovieReview} id={this.props.match.params.id} /></div>  
                         </div>
                  

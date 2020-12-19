@@ -1,14 +1,49 @@
-.personal-details{
-    grid-column: 1/1;
 
-}
-.otherdetails{
-    grid-column: 2/13;
-    
+.personal-details img{
+    border-radius: 8px;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+    border-width: 0px;
+    outline: none;
  
 }
+.personal-details h3{
+    font-weight: 700;
+    font-size: 2em;
+    margin: 0px 0px 20px 0px;
+}
+.personal-details h4{
+    font-weight: 600;
+    font-size: 1.5em;
+
+    margin:.5em 0px 0px 0px;
+}
+.personal-details p{
+    margin-top:.3em!important;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+
+.other-info{
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    gap: 20px;
+    margin-top: 10px;
+}
+.other-info p {
+    font-weight: 700;
+    font-size: 1em;
+}
+.personal-info h3{
+    margin-top: 20px;
+}
+
 .credit-gap{
     gap: 20px;
+    grid-template-columns: 1fr 3fr;
 }
 .credit-width{
     max-width: 815px;
@@ -22,9 +57,18 @@
     list-style: none;
     gap:10px;
     box-sizing: border-box;
+    padding: 0px 0px 15px;
     }
 .credit li{
     width: 150px;
+}
+.credit li img{
+    border-radius: 8px;
+}
+.credit p{
+    font-size: 1em;
+    font-weight: 500;
+    overflow: hidden;
 }
 .flex{
     display: flex;
@@ -32,23 +76,43 @@
 .pcredit{
     list-style: none;
     padding: 0px;
+        color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 .pcredit li{
-    border:1px solid #dedede;
-    padding:10px 10px
+    border:.5px solid #dedede;
+    padding:10px 10px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+.pcredit li a{
+    color: rgba(0,0,0,1);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.2em;
+   
+}
+.pcredit li span{
+    color: rgba(0,0,0,0.8);
 }
 .pflex{
-    align-items: stretch;
+    align-items: center;
 }
 .pflex h2{
     margin:0px;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 .pflex button{
     border: none;
     background: none;
-    font-size: 1.1em;
+    font-size: 1em;
     padding: 6px;
-    cursor:pointer;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 .pflex button:hover, button:active, button:visited, button:link, button:focus{
 border:none;
@@ -59,4 +123,25 @@ outline: none;
 }
 .active{
     text-decoration: underline;
+}
+
+@media only screen and (max-width:  1199px) { 
+    .credit-gap{
+        grid-template-columns: 2fr 4fr;
+    }
+}
+@media only screen and (max-width:  991px) { 
+    .credit-gap{
+        grid-template-columns: 2fr 2fr;
+    }
+    .personal-details img{
+        width: 100%;
+        height: 100%;
+    }
+}
+@media only screen and (max-width:  767px) { 
+    .credit-gap{
+        grid-template-columns: 1fr;
+    }
+  
 }

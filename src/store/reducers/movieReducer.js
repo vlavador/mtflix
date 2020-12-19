@@ -32,6 +32,17 @@ const movieReducer = (state = initState,action) =>{
             }
             return state;
 
+        case'FETCH_ERROR_POPULAR_MOVIE':
+            let err = action.payload
+            
+            
+            state = {
+                ...state,
+                PopularMovies:err
+              
+            }
+            return state;
+
         case'FETCH_OTHER_POPULAR_MOVIES':
             let  otherpopularmovie = action.payload
             state = {
