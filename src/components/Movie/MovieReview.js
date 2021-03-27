@@ -1,13 +1,26 @@
-import React,{Fragment} from 'react'
-import { Link } from 'react-router-dom'
+import React,{Fragment,useEffect,useReducer} from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { movieReviewReducer,reviewState } from '../../reducer/movie/movieReviewReducer';
 
-const MovieReview = ({Review,id}) => { 
+import {api_key} from  '../../Keys'
+
+const MovieReview = ({title}) => { 
+    const {id} = useParams()
+    const [state,dispatch] = useReducer(movieReviewReducer,reviewState)
+    const {Review} = state
+    useEffect(() => {
+        dispatch({type:'CLEAR_MOVIE_REVIEW',payload:[]})
+        fetch(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${api_key}`)
+        .then(res => res.json())
+        .then(data => dispatch({type:'FETCH_MOVIE_REVIEW',payload:data.results}))
+        .catch(err => console.log(err))
+
     
+    }, [id])
+
     let review =  Review.length >= 1 ? ( 
     <Fragment>
-    <div>
-    <h2 className="header-title">Review</h2>
-    <ul className="review-design grid">
+          <ul className="review-design grid">
            {Review.slice(0,2).map((review,index) => { return( 
           
 
@@ -24,16 +37,19 @@ const MovieReview = ({Review,id}) => {
         )
       })}
     </ul>
-   
-    </div>
     <Link to={`/movie/${id}/review`}>View All Review</Link>
-
+      
     </Fragment>
-    ):(<div>not working</div>)
+    ):(<p>We don't have any reviews for {title}</p>)
    
     return(
-        <Fragment>
+        <Fragment> <div>
+        <h2 className="header-title">Review</h2>
+      
             {review}
+        
+   
+   </div>
         </Fragment>
     )
 }

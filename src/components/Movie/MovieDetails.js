@@ -1,6 +1,11 @@
-import React, { Component,Fragment } from 'react'
-import {connect} from 'react-redux'
-import {getMovieDetails,getMovieCredit, getMovieReview, getSimilarMovie, getMovieRecommendation} from '../../store/actions/movieAction'
+import React, { useEffect,useReducer,Fragment} from 'react'
+import { useParams } from 'react-router-dom'
+import { movieDetailsReducer,initialState } from '../../reducer/movie/movieDetailsReducer';
+
+
+import {api_key} from  '../../Keys'
+
+
 import MovieCast from './MovieCast'
 import MovieCrew from './MovieCrew'
 import MovieRecommendation from './MovieRecommendation'
@@ -10,102 +15,92 @@ import SimilarMovies from './SimilarMovies'
 import Loader from 'react-loader-spinner'
 import nobg from '../../assets/nobg.png'
 
+function MovieDetails() {
+        
+        const {id} = useParams();
 
-class MovieDetails extends Component{
-    componentDidMount(){
-        this.props.clearmoviedetails()
-        this.props.getMovieDetails(this.props.match.params.id)
-        this.props.getMovieCredit(this.props.match.params.id)
-        this.props.getMovieReview(this.props.match.params.id)
-        this.props.getSimilarMovie(this.props.match.params.id)
-        this.props.getMovieRecommendation(this.props.match.params.id)
+        const [state, dispatch] = useReducer(movieDetailsReducer, initialState)
+        const { MovieDetails } = state;
+        
+        useEffect(() => {
 
-       
-    
-    
-    }
-    render(){
+            dispatch({type:'CLEAR_MOVIEDETAILS',payload:[]})
+
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+        .then(res => res.json())
+        .then(data =>  dispatch({type:'FETCH_MOVIEDETAILS',payload:data}))
+        .catch(err => dispatch({type:'FETCH_NULLMOVIEDETAIL',payload:null}))
+
+        window.scrollTo(0, 0)
+        
+        }, [id])
 
     
-        console.log(this.props.MovieReview)
-        let moviedetails = this.props.MovieDetails === null ?
+    return (
+        <Fragment>
+            {
+                MovieDetails === null ?
          (<div>
                <h2>Oops!—We can't find the page you're looking for.</h2>
                 <p>You tried to request a page that doesn't seem to exist. If you believe this to be in error, let us know on the forums.</p>
          </div>) : 
            (
-            this.props.MovieDetails.length === 0 ? (
-                <Loader type="Puff" color="#00BFFF" height={80} width={80} />
+            MovieDetails.length === 0 ? (
+                <div className="spinner-design container">
+                <Loader type="Puff" color="#00BFFF" height={150} width={200} />
+                </div>
             ) : (
                 <Fragment>
-                <section className='Movie-Background' style={{backgroundImage:`radial-gradient(circle at 20% 50%, rgba(11.76%, 18.43%, 23.53%, 0.98) 0%, rgba(18.82%, 25.49%, 30.59%, 0.88) 100%),url(https://image.tmdb.org/t/p/w1400_and_h450_face/${this.props.MovieDetails.backdrop_path})`}}>
-                    <div className="container grid moviedetails">
+                <section className='Movie-Tv-Background' style={{backgroundImage:`radial-gradient(circle at 20% 50%, rgba(11.76%, 18.43%, 23.53%, 0.98) 0%, rgba(18.82%, 25.49%, 30.59%, 0.88) 100%),url(https://image.tmdb.org/t/p/w1400_and_h450_face/${MovieDetails.backdrop_path})`}}>
+                    <div className="container grid movie-tv-details">
                         <div className="poster bg-color">
                         {
-                            this.props.MovieDetails.poster_path === null ?
+                            MovieDetails.poster_path === null ?
                              (<img src={nobg} /> ) 
-                            : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + this.props.MovieDetails.poster_path}  alt="Lights"  />)
+                            : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + MovieDetails.poster_path}  alt="Lights"  />)
                         }
                      
                         </div>
-                        <div className="movie-padding">
-                            <div className="moviedetailscolor">
-                            <h2 className="moviedetailtitle">{this.props.MovieDetails.title}</h2>
+                        <div className="movie-tv-padding">
+                            <div className="movie-tv-detailscolor">
+                            <h2 className="movie-tv-detailtitle">{MovieDetails.title}</h2>
                             </div>
                             <div className="overview-info">
                                 <h3 dir="auto">Overview</h3>
-                                <p>{this.props.MovieDetails.overview}</p>
+                                <p>{MovieDetails.overview}</p>
                             </div>
-                            <MovieCrew Crew = {this.props.MovieCredit.crew}/> 
+                            {/**<MovieCrew />*/} 
                         </div>
                     </div>
                 </section>
                 <section className="content">
-                    <div className="container grid movie-content">
+                    <div className="container grid movie-tv-content">
                         <div className="">
-                           <div className="cast-padding-bottom"> <MovieCast Cast= {this.props.MovieCredit.cast} id={this.props.match.params.id}/></div>
-                      <div className="movie-review"><MovieReview Review = {this.props.MovieReview} id={this.props.match.params.id} /></div>  
+                           <div className="cast-padding-bottom"> 
+                           <MovieCast />
+                           </div>
+                      <div className="movie-tv-review">
+                        <MovieReview title={MovieDetails.title} />
+                        </div>  
                         </div>
                  
-                       <div className=""><OtherDetails OtherDetails = {this.props.MovieDetails}/></div>
+                       <div className="">
+                         <OtherDetails OtherDetails = {MovieDetails}/>
+                        </div>
                     </div>  
                 </section>
-              
                 <section className="container custom-padding">
-                    <MovieRecommendation recommendation = {this.props.Recommendation}/>
+                    <MovieRecommendation />
                 </section>
                 <section className="container custom-padding">
-                    <SimilarMovies  similar={this.props.SimilarMovie}/>
+                    <SimilarMovies  />
                 </section>
-
-            </Fragment>
+                </Fragment>
             )
-           )  
-        return(
-            <Fragment>
-                {moviedetails}
-            </Fragment>
-        )
-    }
-}
-const mapStateToProps = (state) =>{
-    return{
-        MovieDetails:state.movie.MovieDetails,
-        MovieCredit:state.movie.MovieCredit,
-        MovieReview:state.movie.MovieReview,
-        Recommendation:state.movie.MovieRecommendation,
-        SimilarMovie:state.movie.SimilarMovie
-    }
-}
-const mapDispatchToProps = (dispatch) =>{
-    return{
-        getMovieDetails : (id) => {dispatch(getMovieDetails(id))},
-        getMovieCredit : (id) => {dispatch(getMovieCredit(id))},
-        getMovieReview: (id) => {dispatch(getMovieReview(id))},
-        getSimilarMovie: (id) => {dispatch(getSimilarMovie(id))},
-        getMovieRecommendation : (id) => {dispatch(getMovieRecommendation(id))},
-        clearmoviedetails: () => { dispatch({type:'CLEAR_MOVIEDETAILS',payload:[]})}
-    }
+           )
+            }
+        </Fragment>
+    )
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MovieDetails);
+export default MovieDetails

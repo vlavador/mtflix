@@ -64,6 +64,8 @@
 }
 .credit li img{
     border-radius: 8px;
+    width: 100%;
+    height: auto;
 }
 .credit p{
     font-size: 1em;
@@ -123,6 +125,12 @@ outline: none;
 }
 .active{
     text-decoration: underline;
+}
+.view-credit{
+    color: #000;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
 }
 
 @media only screen and (max-width:  1199px) { 

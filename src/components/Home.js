@@ -1,11 +1,9 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-const Home = () => {
+import { Fragment } from "react";
+
+export default function Home(){
     return(
         <Fragment>
-            This is the Home Component
-            <Link to={`/movie/popular/1`}>popular</Link>
+            <h1>This is the Homepage</h1>
         </Fragment>
     )
 }
-export default Home
