@@ -9,24 +9,26 @@ const MovieRecommendation = () => {
     const [{Recommendation},dispatch] = useReducer(recommendationReducer,initialState)
 
     useEffect(() => {
+        const abortCont = new AbortController();
         dispatch({type:'CLEAR_RECOMMENDATION_MOVIE',payload:[]})
-        fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${api_key}`,{signal:abortCont.signal})
         .then(res => res.json())
         .then(data =>  dispatch({type:'FETCH_RECOMMENDATION_MOVIE',payload:data.results}))
         .catch(err => console.log(err))
+        return () => abortCont.abort();
 
        
  
     }, [id])
     let movieRecommendation =  Recommendation.length != 0 ? (
         <Fragment>    
-        <h2>Recommendations</h2>
+
         <ul className="recommendation grid">
         {Recommendation.slice(0,10).map((rec,index) => { return( 
          <li className="" key={index}>  
              <div>
                 <Link to={`/movie/${rec.id}`} >                 
-                    <img src={'https://image.tmdb.org/t/p/w250_and_h141_face'+rec.poster_path}/>
+                    <img src={'https://image.tmdb.org/t/p/w250_and_h141_face'+rec.poster_path} alt={rec.original_title}/>
                 </Link>
 
                  <div>
@@ -42,9 +44,13 @@ const MovieRecommendation = () => {
 
     ) : (<p>We don't have any recommendation for this movie.</p>)
     return(
-      <Fragment>
+
+        <div className="container custom-padding">
+        <h2>Recommendations</h2>
          {movieRecommendation}
-      </Fragment>
+        </div>
+        
+
     )
 }
 export default MovieRecommendation

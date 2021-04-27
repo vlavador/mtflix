@@ -1,4 +1,4 @@
-export const initialState = {
+export const upcomingMovieState = {
     UpcomingMovies:[],
     totalpages:1,
     page:0,
@@ -16,7 +16,7 @@ export const upcomingReducer = (state,action) => {
                 page:action.payload.page
             }
             return state;
-            break;
+             
         
         case 'FETCH_ERROR_UPCOMING_MOVIE':
             state = {
@@ -25,7 +25,7 @@ export const upcomingReducer = (state,action) => {
                  UpcomingMovies:action.payload   
             }
             return state;
-            break;
+             
         
         case 'CLEAR_UPCOMING_MOVIE':
             
@@ -36,8 +36,8 @@ export const upcomingReducer = (state,action) => {
                 
             }
             return state;
-                break;   
+                    
         default:
-            break;
+            return state;
     }
 }

@@ -12,7 +12,7 @@ export const televisionDetailsReducer = (state,action) => {
             }
          
             return state;
-            break;
+           
         
             case 'FETCH_NULL_TELEVISION_DETAIL':
                 state = {
@@ -20,7 +20,7 @@ export const televisionDetailsReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+               
 
             case 'CLEAR_TELEVISION_DETAILS':
 
@@ -29,9 +29,9 @@ export const televisionDetailsReducer = (state,action) => {
                     }
                  
                     return state;
-                    break;
+                   
     
         default:
-            break;
+            return state;
     }
 }

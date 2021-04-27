@@ -34,6 +34,7 @@ function NavigationMenu() {
                     
                 
                     </NavDropdown>
+                    <Nav.Link as={NavLink} to="/person/popular/1">Person</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 </Navbar>

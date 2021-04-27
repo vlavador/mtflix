@@ -1,10 +1,10 @@
 import React,{Fragment} from 'react'
 import {Link,useParams} from 'react-router-dom'
-import nomoviebg from '../../assets/nomoviebg.svg'
+
 import test from '../../assets/TEST.png'
 
 const MovieLists = ({movieList,Created}) => {
-    console.log('movie list working')
+    
     const MovieTrend = movieList === undefined ? (null) :(
         movieList.map(movie => {
             return( 
@@ -12,8 +12,9 @@ const MovieLists = ({movieList,Created}) => {
                     <div className="movie-tv-img bg-color">
                         {
                             movie.poster_path === null ?
-                            (<img src={test}/>) :
-                            (<img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + movie.poster_path}  alt="Lights" />)
+                            (<Link to={'/movie/' +movie.id}><img src={test} alt={movie.title} /></Link>) :
+                            (<Link to={'/movie/' +movie.id}><img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + movie.poster_path}  alt={movie.title}
+                             /></Link>)
                         }
                     </div>
                     <div className="movie-tv-content">

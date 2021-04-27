@@ -12,7 +12,7 @@ export const televisionReviewReducer = (state,action) => {
             }
          
             return state;
-            break;
+           
         case 'CLEAR_TELEVISION_REVIEW':
   
                 state = {
@@ -20,11 +20,11 @@ export const televisionReviewReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+               
         
         
     
         default:
-            break;
+            return state;
     }
 }

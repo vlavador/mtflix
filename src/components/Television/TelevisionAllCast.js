@@ -15,21 +15,26 @@ export default function TelevisionAllCast(){
     const [{TelevisionDetails}, dispatch] = useReducer(televisionDetailsReducer, initialState)
     const [{TelevisionCredit}, creditdispatch] = useReducer(televisionCreditReducer, creditState)
     useEffect(() => {
+        const abortCont = new AbortController();
         creditdispatch({type:'CLEAR_TELEVISION_CREDIT',payload:[]})
-        fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${api_key}`,{signal:abortCont.signal})
         .then(res => res.json())
         .then(data => creditdispatch({type:'FETCH_TELEVISION_CREDIT',payload:data}))
         .catch(err => console.log(err))
      
         window.scrollTo(0, 0)
+        return () => abortCont.abort();
     }, [id])
 
     useEffect(() => {
+        const abortConts = new AbortController();
+        
         dispatch({type:'CLEAR_TELEVISION_DETAILS',payload:[]})
-        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}`,{signal:abortConts.signal})
         .then(res => res.json())
         .then(data => dispatch({type:'FETCH_TELEVISION_DETAILS',payload:data}))
         .catch(err => dispatch({type:'FETCH_NULL_TELEVISION_DETAIL',payload:null}))
+        return () => abortConts.abort();
     }, [id])
 
     let AllCast = TelevisionCredit.length === 0 ? (null) : (TelevisionCredit.cast.map((cast)=>{
@@ -42,12 +47,12 @@ export default function TelevisionAllCast(){
                     <Fragment>
                         {
                             cast.gender === 1 ? 
-                            (<img src={f66} className="noImage"/>):
-                            (<img src={m66} className="noImage"/>)
+                            (<img src={f66} className="noImage" alt={cast.name}/>):
+                            (<img src={m66} className="noImage" alt={cast.name}/>)
                         }
                         </Fragment>  
                 ) : (
-                    <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+cast.profile_path}/>
+                    <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+cast.profile_path} alt={cast.name}/>
                 )
             }
             </Link>

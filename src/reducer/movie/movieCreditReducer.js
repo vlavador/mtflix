@@ -12,7 +12,7 @@ export const movieCreditReducer = (state,action) => {
             }
          
             return state;
-            break;
+            
 
         case 'CLEAR_MOVIECREDIT':
   
@@ -21,10 +21,10 @@ export const movieCreditReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+                
         
     
         default:
-            break;
+                return state;
     }
 }

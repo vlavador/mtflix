@@ -17,10 +17,10 @@ export const topRatedReducer = (state,action) => {
                 
             }
             return state;
-            break;
+            
         
         case 'FETCH_ERROR_TOPRATED_MOVIE':
-            console.log(action.payload)
+        
             state = {
                 ...state,
                  error:true,
@@ -29,7 +29,7 @@ export const topRatedReducer = (state,action) => {
                
             }
             return state;
-            break;
+            
 
         case 'CLEAR_TOPRATED_MOVIE':
            
@@ -40,9 +40,9 @@ export const topRatedReducer = (state,action) => {
                     
                 }
                 return state;
-                break;
+                
     
         default:
-            break;
+            return state;
     }
 }

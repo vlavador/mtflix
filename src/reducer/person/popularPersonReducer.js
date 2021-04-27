@@ -1,46 +1,46 @@
 export const initialState = {
-    PopularSeries:[],
+    PopularPerson:[],
     totalpages:1,
     page:0,
     error:false
 }
 
-export const popularReducer = (state,action) => {
+export const popularPersonReducer = (state,action) => {
     switch (action.type) {
-        case 'FETCH_POPULAR_TELEVISION':
+        case 'FETCH_POPULAR_PERSON':
            
             state = {
                 ...state,
-                PopularSeries:action.payload.results,
+               PopularPerson:action.payload.results,
                 totalpages:action.payload.total_pages,
                 page:action.payload.page
                 
             }
             return state;
-            
+           
         
-        case 'FETCH_ERROR_POPULAR_TELEVISION':
-          
+        case 'FETCH_ERROR_POPULAR_PERSON':
+        
             state = {
                 ...state,
                  error:true,
-                PopularSeries:action.payload
+               PopularPerson:action.payload
               
                
             }
             return state;
-            
+           
 
-        case 'CLEAR_POPULAR_TELEVISION':
+        case 'CLEAR_POPULAR_PERSON':
            
                 state = {
                     ...state,
-                    PopularSeries:action.payload
+                   PopularPerson:action.payload
                     
                     
                 }
                 return state;
-                
+               
     
         default:
             return state;

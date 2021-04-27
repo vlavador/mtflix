@@ -12,7 +12,7 @@ export const similarMovieReducer = (state,action) => {
             }
          
             return state;
-            break;
+           
 
         case 'CLEAR_SIMILAR_MOVIE':
   
@@ -21,10 +21,10 @@ export const similarMovieReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+               
             
     
         default:
-            break;
+            return state;
     }
 }

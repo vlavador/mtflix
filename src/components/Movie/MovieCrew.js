@@ -11,18 +11,20 @@ const MovieCrew = () =>{
     const Crew = state.MovieCredit.crew
 
     useEffect(() => {
+        const abortCont = new AbortController();
         dispatch({type:'CLEAR_MOVIECREDIT',payload:[]})
-        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api_key}`,{signal:abortCont.signal})
         .then(res => res.json())
-        .then(data => dispatch({type:'FETCH_MOVIECREDIT',payload:data.results}))
+        .then(data => dispatch({type:'FETCH_MOVIECREDIT',payload:data}))
         .catch(err => console.log(err))
-
+        return () => abortCont.abort();
      
     }, [id])
     console.log(state)
 
-    let crew = Crew === undefined ? (<div> not working</div>):(
+    let crew = Crew === undefined ? (null):(
         <Fragment>
+      {Crew.length === 0 ?  null : <h3>Featured Crew</h3> }
         <ul className="grid movie-tv-crew" >
             {Crew.slice(0,6).map((crew,index) => { return( 
                 <li  className="crewdesign" key={index}>  
@@ -38,6 +40,7 @@ const MovieCrew = () =>{
     )
     return(
         <Fragment>
+       
         {crew}
    
     </Fragment>

@@ -24,7 +24,7 @@ const Footer = () =>{
                 </div>
                 <div>
                     <h2>About The website</h2>
-                    <p>Hello Viewers, Here's my sample portfolio. The MTFinder helps you to find the latest,upcoming, now playing, top rated movies and onAir, Airing, popular and top rated Tv Shows. The technology I use creating this website are html,css,javascript,redux and the framework I use are react.js and reactbootstrap.</p>
+                    <p>Hello Viewers, Here's my sample portfolio. The MTFinder helps you to find the latest,upcoming, now playing, top rated movies and onAir, Airing, popular and top rated Tv Shows. The technology I use for creating this website are html,css,javascript and the framework I use are react.js and reactbootstrap.</p>
                 </div>
 
             </div>

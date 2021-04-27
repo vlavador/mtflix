@@ -12,7 +12,7 @@ export const movieDetailsReducer = (state,action) => {
             }
          
             return state;
-            break;
+
         
             case 'FETCH_NULLMOVIEDETAIL':
                 state = {
@@ -20,7 +20,7 @@ export const movieDetailsReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+    
 
             case 'CLEAR_MOVIEDETAILS':
 
@@ -29,9 +29,9 @@ export const movieDetailsReducer = (state,action) => {
                     }
                  
                     return state;
-                    break;
+        
     
         default:
-            break;
+            return state;
     }
 }

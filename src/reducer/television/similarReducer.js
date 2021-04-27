@@ -12,7 +12,7 @@ export const similarReducer = (state,action) => {
             }
          
             return state;
-            break;
+         
 
         case 'CLEAR_SIMILAR_TELEVISION':
   
@@ -21,9 +21,9 @@ export const similarReducer = (state,action) => {
             }
          
             return state;
-            break;    
+             
     
         default:
-            break;
+            return state;
     }
 }

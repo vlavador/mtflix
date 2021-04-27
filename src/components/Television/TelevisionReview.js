@@ -7,14 +7,16 @@ const TelevisionReview = ({title}) => {
     const [{Review},dispatch] = useReducer(televisionReviewReducer,reviewState)
 
     useEffect(() => {
+        const abortCont = new AbortController();
         dispatch({type:'CLEAR_TELEVISION_REVIEW',payload:[]})
         
-        fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${api_key}`,{signal:abortCont.signal})
         .then(res => res.json())
         .then(data => dispatch({type:'FETCH_TELEVISION_REVIEW',payload:data}))
         .catch(err => console.log(err))
      
         window.scrollTo(0, 0)
+        return () => abortCont.abort();
     }, [id])
 
 
@@ -25,13 +27,13 @@ const TelevisionReview = ({title}) => {
            {Review.slice(0,2).map((review,index) => { return( 
           
 
-            <li className="card review-content" key={index}>
+            <li className="cards review-content" key={index}>
                 <div>
                 <div className="review-info reviewauthor">
                 <h2>Review by {review.author} <span>{review.author_details.rating}</span></h2>
               
                 </div>
-                    <div className="card-body reviewcontent"><span>{review.content}</span></div>
+                    <div className="card-bodys reviewcontent"><span>{review.content}</span></div>
                 </div>
                
             </li>    

@@ -18,6 +18,7 @@ import TelevisionDetails from './components/Television/TelevisionDetails';
 import TelevisionAllReview from './components/Television/TelevisionAllReview';
 import TelevisionAllCast from './components/Television/TelevisionAllCast';
 import PersonProfile from './components/Person/PersonProfile';
+import PopularPerson from './components/Person/PopularPerson';
 
 import Home from './components/Home';
 import SkeletonMovieDetails from './components/skeletons/SkeletonMovieDetails';
@@ -27,6 +28,7 @@ import PNFound from './components/PNFound'
 
 
 import Footer from './components/Footer';
+import SearchResult from './components/SearchResult';
 
 function App() {
   return (
@@ -55,6 +57,9 @@ function App() {
       <Route exact path='/tv/:id/review' component={TelevisionAllReview}/>
       
       <Route exact path='/person/:id' component={PersonProfile} />     
+      <Route exact path='/search/:type/:name' component={SearchResult} />     
+      <Route exact path='/person/popular/:id' component={PopularPerson} />   
+
       <Route path="*" component={PNFound}/>
       </Switch>
       <Footer />

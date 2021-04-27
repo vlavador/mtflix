@@ -17,10 +17,10 @@ export const topRatedReducer = (state,action) => {
                 
             }
             return state;
-            break;
+           
         
         case 'FETCH_ERROR_TOP_RATED_TELEVISION':
-            console.log(action.payload)
+         
             state = {
                 ...state,
                  error:true,
@@ -29,7 +29,7 @@ export const topRatedReducer = (state,action) => {
                
             }
             return state;
-            break;
+           
 
         case 'CLEAR_TOP_RATED_TELEVISION':
            
@@ -40,10 +40,10 @@ export const topRatedReducer = (state,action) => {
                     
                 }
                 return state;
-                break;
+               
     
         default:
             return state;
-            break;
+           
     }
 }

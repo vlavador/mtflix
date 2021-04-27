@@ -1,0 +1,55 @@
+.home-banner{
+padding: 75px 0px;
+background-size: cover;
+    background-origin: unset;
+    background-position: center;
+}
+
+.home-content{
+    color:#fff;
+}
+.home-content h2{
+    font-size: 3em;
+    font-weight: 700;
+    line-height: 1;
+}
+.home-content h3{
+    font-size: 2em;
+    font-weight: 600;
+    margin: 0;
+}
+
+.home-popular {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    grid-template-columns: repeat(10,1fr);
+    padding: 0px;
+    list-style: none;
+    grid-gap: 10px;
+    gap: 10px;
+}
+.home-popular li{
+    width: 150px;
+    margin:15px 0px;
+ 
+}
+
+.home-popular li p{
+    white-space: inherit;
+    line-height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
+    width: 100px;
+}
+.view-popular{
+    
+    margin:10px 0px;
+   
+}
+.view-popular a{
+    font-size: 1em;
+    color:#000;
+    text-decoration: underline;
+}

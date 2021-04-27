@@ -8,6 +8,7 @@ import OtherDetails from './OtherDetails'
 import SimilarTelevision from './SimilarTelevision'
 import Loader from 'react-loader-spinner'
 import nobg from '../../assets/nobg.png'
+import PageNotFound from '../PageNotFound'
 
 import { useParams } from 'react-router'
 import { televisionDetailsReducer,initialState } from '../../reducer/television/televisionDetailsReducer';
@@ -18,26 +19,27 @@ export default function TelevisionDetails(){
 
     const [{TelevisionDetails}, dispatch] = useReducer(televisionDetailsReducer, initialState)
     useEffect(() => {
+        const abortCont = new AbortController();
         dispatch({type:'CLEAR_TELEVISION_DETAILS',payload:[]})
-        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}`)
-        .then(res => res.json())
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${api_key}`,{signal:abortCont.signal})
+        .then(res =>{   
+            if(!res.ok){
+            throw Error('error')
+            } return res.json()})
         .then(data => dispatch({type:'FETCH_TELEVISION_DETAILS',payload:data}))
         .catch(err => dispatch({type:'FETCH_NULL_TELEVISION_DETAIL',payload:null}))
         window.scrollTo(0, 0)
+        return () => abortCont.abort();
       
     }, [id])
+   
     return(
         <Fragment>
         {
-            TelevisionDetails === null ?(
-                <div>
-                    <h2>Oops!—We can't find the page you're looking for.</h2>
-                    <p>You tried to request a page that doesn't seem to exist. If you believe this to be in error, let us know on the forums.</p>
-                </div>  
-            ) : (
+            TelevisionDetails === null ?(<PageNotFound />) : (
                 TelevisionDetails.length === 0 ? (
                     <div className="spinner-design container">
-                        <Loader type="Puff" color="#00BFFF" height={150} width={200} />
+                        <Loader type="Puff" color="#097ddc" height={150} width={200} />
                     </div>   
                 ) : (
                     <Fragment>
@@ -46,41 +48,49 @@ export default function TelevisionDetails(){
                                 <div className="poster bg-color">
                                 {
                                     TelevisionDetails.poster_path === null ?
-                                    (<img src={nobg} /> ) 
-                                    : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + TelevisionDetails.poster_path}  alt="Lights"  />)
+                                    (<img src={nobg} alt={TelevisionDetails.original_name} /> ) 
+                                    : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + TelevisionDetails.poster_path}  alt={TelevisionDetails.original_name}  />)
                                 }
                             
                                 </div>
-                                <div className="movie-tv-padding">
+                                <div className="movie-tv-padding moviedetailscolor">
                                     <div className="movie-tv-detailscolor">
                                     <h2 className="movie-tv-detailtitle">{TelevisionDetails.original_name}</h2>
                                     </div>
                                     <div className="overview-info">
                                         <h3 dir="auto">Overview</h3>
-                                        <p>{TelevisionDetails.overview}</p>
+                                        {
+                                            TelevisionDetails.overview === " " ? 
+                                                <p>We don't have any overview for this TV show.</p> 
+                                                : <p>{TelevisionDetails.overview}</p>
+                                        }
+                                      
                                     </div>
-                                    {/**<TelevisionCrew Crew = {TelevisionCredit.crew}/> */}
+                                    <div className="feature-crew">
+                                    <TelevisionCrew />
+                                    </div>
+                                  
                                 </div>
                             </div>
                         </section>
                         <section className="content">
-                            <div className="container grid movie-tv-content">
+                            <div className="container grid movie-tv-content border-content">
                                 <div className="">
                                 <div className="cast-padding-bottom"> 
                                 <TelevisionCast/>
                                 </div>
                                 <div className="movie-tv-review">
-                                <TelevisionReview title={TelevisionDetails.title} />
+                                <TelevisionReview title={TelevisionDetails.original_name} />
                                 </div>  
                                 </div>
                         
                             <div className=""><OtherDetails OtherDetails = {TelevisionDetails}/></div>
                             </div>  
                         </section>
-                        <section className="container custom-padding">
+                        <section >
                             <TelevisionRecommendation />
                         </section>
-                        <section className="container custom-padding">
+                        <section >
                             <SimilarTelevision/>
                         </section>
                     </Fragment>

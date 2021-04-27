@@ -14,6 +14,8 @@ import OtherDetails from './OtherDetails'
 import SimilarMovies from './SimilarMovies'
 import Loader from 'react-loader-spinner'
 import nobg from '../../assets/nobg.png'
+import PageNotFound from '../PageNotFound';
+
 
 function MovieDetails() {
         
@@ -23,16 +25,20 @@ function MovieDetails() {
         const { MovieDetails } = state;
         
         useEffect(() => {
-
+            const abortCont = new AbortController();
             dispatch({type:'CLEAR_MOVIEDETAILS',payload:[]})
 
-            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
-        .then(res => res.json())
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`,{signal:abortCont.signal})
+        .then(res => {
+            if(!res.ok){
+                throw Error('error')
+                }
+           return  res.json()})
         .then(data =>  dispatch({type:'FETCH_MOVIEDETAILS',payload:data}))
         .catch(err => dispatch({type:'FETCH_NULLMOVIEDETAIL',payload:null}))
 
         window.scrollTo(0, 0)
-        
+        return () => abortCont.abort();
         }, [id])
 
     
@@ -40,14 +46,11 @@ function MovieDetails() {
         <Fragment>
             {
                 MovieDetails === null ?
-         (<div>
-               <h2>Oops!—We can't find the page you're looking for.</h2>
-                <p>You tried to request a page that doesn't seem to exist. If you believe this to be in error, let us know on the forums.</p>
-         </div>) : 
+         (<PageNotFound />) : 
            (
             MovieDetails.length === 0 ? (
                 <div className="spinner-design container">
-                <Loader type="Puff" color="#00BFFF" height={150} width={200} />
+                <Loader type="Puff" color="#097ddc" height={150} width={200} />
                 </div>
             ) : (
                 <Fragment>
@@ -56,25 +59,31 @@ function MovieDetails() {
                         <div className="poster bg-color">
                         {
                             MovieDetails.poster_path === null ?
-                             (<img src={nobg} /> ) 
-                            : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + MovieDetails.poster_path}  alt="Lights"  />)
+                             (<img src={nobg}  alt={MovieDetails.title} /> ) 
+                            : (   <img src={"https://image.tmdb.org/t/p/w300_and_h450_bestv2" + MovieDetails.poster_path}  alt={MovieDetails.title}  />)
                         }
                      
                         </div>
-                        <div className="movie-tv-padding">
+                        <div className="movie-tv-padding moviedetailscolor">
                             <div className="movie-tv-detailscolor">
                             <h2 className="movie-tv-detailtitle">{MovieDetails.title}</h2>
                             </div>
                             <div className="overview-info">
                                 <h3 dir="auto">Overview</h3>
-                                <p>{MovieDetails.overview}</p>
+                                {
+                                    MovieDetails.overview === "" ? 
+                                    <p>We don't have any overview for this movie.</p> :    <p>{MovieDetails.overview}</p>
+                                }
+                             
                             </div>
-                            {/**<MovieCrew />*/} 
+                            <div className="feature-crew">
+                            <MovieCrew />
+                            </div>
                         </div>
                     </div>
                 </section>
                 <section className="content">
-                    <div className="container grid movie-tv-content">
+                    <div className="container grid movie-tv-content border-content">
                         <div className="">
                            <div className="cast-padding-bottom"> 
                            <MovieCast />
@@ -82,6 +91,7 @@ function MovieDetails() {
                       <div className="movie-tv-review">
                         <MovieReview title={MovieDetails.title} />
                         </div>  
+                        
                         </div>
                  
                        <div className="">
@@ -89,10 +99,10 @@ function MovieDetails() {
                         </div>
                     </div>  
                 </section>
-                <section className="container custom-padding">
+                <section  className="m20">
                     <MovieRecommendation />
                 </section>
-                <section className="container custom-padding">
+                <section className="m20" >
                     <SimilarMovies  />
                 </section>
                 </Fragment>

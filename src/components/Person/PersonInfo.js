@@ -1,16 +1,19 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom';
 import noImg from '../../assets/noimage.png'
-
+import{addSpace} from '../functions'
 const PersonInfo = ({details}) =>{
-   
+    
+ 
+  
     return(
         <Fragment>
             <div className="bg-color">
             {
                 details.profile_path === null ?
-                (<img src={noImg} />)
+                (<img src={noImg} alt={details.name} />)
                 :
-                ( <img className="img-responsive" src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${details.profile_path}`}/>)
+                ( <img className="img-responsive" src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2${details.profile_path}`} alt={details.name}/>)
             }
                
             </div>
@@ -21,7 +24,14 @@ const PersonInfo = ({details}) =>{
             {
                 details.biography === "" ? 
                 (<p>We don't have a biography for {details.name}.</p>) :
-                (<p>{details.biography}</p>)
+                (<Fragment>
+                    <div className="overflow">
+
+                    {addSpace(details.biography)}
+                    </div>
+                  
+                    <a href={`https://www.themoviedb.org/person/${details.id}`} target="_blank" >Read More...</a>
+                </Fragment>)
             }
            
             </div>
@@ -37,14 +47,23 @@ const PersonInfo = ({details}) =>{
                     <p>Gender</p>
                     <span>{details.gender === 2 ? 'Male' : 'Female' }</span>
                 </div>
-                <div>
+                {
+                    details.birthday === null ? 
+                    null :  ( <div> 
                     <p>Birthday </p>
                     <span>{details.birthday}</span>
-                </div>
+                    </div>
+                    )
+                }
+
+                {
+                    details.place_of_birth === null ? 
+                    null :  (         
                 <div>
                     <p>Place of Birth</p>
                     <span>{details.place_of_birth}</span>
-                </div>
+                </div> )
+                }
             </div>
             </div>
             </div>

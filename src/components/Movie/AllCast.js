@@ -21,14 +21,15 @@ export default function AllCast() {
 
     //Fetching Movie Details
     useEffect(() => {
+        const abortCont = new AbortController();
         dispatch({type:'CLEAR_MOVIEDETAILS',payload:[]})
 
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}`,{signal:abortCont.signal})
         .then(res => res.json())
         .then(data =>  dispatch({type:'FETCH_MOVIEDETAILS',payload:data}))
         .catch(err => dispatch({type:'FETCH_NULLMOVIEDETAIL',payload:null}))
 
-      
+      return () => abortCont.abort();
     }, [])
 
     //Fetching Movie Credits

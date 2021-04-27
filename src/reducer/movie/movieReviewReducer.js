@@ -12,7 +12,7 @@ export const movieReviewReducer = (state,action) => {
             }
          
             return state;
-            break;
+           
 
         case 'CLEAR_MOVIE_REVIEW':
   
@@ -21,10 +21,10 @@ export const movieReviewReducer = (state,action) => {
                 }
              
                 return state;
-                break;        
+                       
         
     
         default:
-            break;
+            return state;
     }
 }

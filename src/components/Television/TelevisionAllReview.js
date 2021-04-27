@@ -9,7 +9,8 @@ import { televisionReviewReducer,reviewState } from '../../reducer/television/te
 import { televisionDetailsReducer,initialState } from '../../reducer/television/televisionDetailsReducer'
 
 import {api_key} from  '../../Keys'
-
+import {getCreated} from '../functions'
+import {addSpace} from '../functions'
 export default function TelevisionAllReview(){
 
     const {id} = useParams()
@@ -17,25 +18,18 @@ export default function TelevisionAllReview(){
   
     const [{TelevisionDetails}, dispatch] = useReducer(televisionDetailsReducer,initialState)
 
-    const addSpace = (data) =>{
-        let newcode = data.split('\n\r\n').map((code) => <p>{code}</p>);
-  
-        return [newcode[0]]
-    }
-    const getCreated = (date) => {
-        let dates = new Date(date)
-        const mlist = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-        return `${mlist[dates.getMonth()]} ${dates.getUTCDate()}, ${dates.getUTCFullYear()}`
-    }
+   
 
     useEffect(() => {
+        const abortCont = new AbortController();
         creditDispatch({type:'CLEAR_TELEVISION_REVIEW',payload:[]})
-        fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${api_key}`)
+        fetch(`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${api_key}`,{signal:abortCont.signal})
         .then(res => res.json())
         .then(data => creditDispatch({type:'FETCH_TELEVISION_REVIEW',payload:data}))
         .catch(err => console.log(err))
      
         window.scrollTo(0, 0)
+        return () => abortCont.abort();
     }, [id])
 
     useEffect(() => {
@@ -51,13 +45,13 @@ export default function TelevisionAllReview(){
     
     (Review.slice(0,9).map((review) =>
         {return(
-        <li className="card">
+        <li className="cards">
             <div>
             <div className="review-info">
             <h2>Review by {review.author} <span>{review.author_details.rating}</span></h2>
-            <p>Written by {review.author_details.name} on {getCreated(review.created_at)}</p>
+            <p>Written by {review.author_details.username} on {getCreated(review.created_at)}</p>
             </div>
-                <div className="card-body">{addSpace(review.content)}</div>
+                <div className="">{addSpace(review.content)}</div>
             </div>
             <div className="text-center">
                 <a href={`https://www.themoviedb.org/review/${review.id}`} className="link">View Review</a>
@@ -79,9 +73,9 @@ export default function TelevisionAllReview(){
                                     <div>
                                         {TelevisionDetails.poster_path === null ? 
                                         (
-                                            <img src={nullCast} className="noImage"/> 
+                                            <img src={nullCast} className="noImage" alt={TelevisionDetails.original_name}/> 
                                         ) : (
-                                            <img src={'https://image.tmdb.org/t/p/w116_and_h174_face'+TelevisionDetails.poster_path}/>
+                                            <img src={'https://image.tmdb.org/t/p/w116_and_h174_face'+TelevisionDetails.poster_path} alt={TelevisionDetails.original_name}/>
                                         )
                                         }
                                     </div>

@@ -42,7 +42,12 @@ const OtherDetails = ({OtherDetails}) => {
                 OtherDetails.genres.length === 0 ? (<span>No Genre Found</span>):(
                         <ul className="ul-genre-design">
                      {   OtherDetails.genres.map(genre =>
-                                <li style={{wordBreak:'break-all'}} className="genre-design" key={genre.id}>{genre.name}</li>
+                                <li className="li-genre-design" key={genre.id}>
+                                <span  className="genre-design">
+                                {genre.name}
+                                </span>
+                                
+                                </li>
                             )
                         }
                         </ul>

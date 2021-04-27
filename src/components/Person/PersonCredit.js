@@ -11,7 +11,7 @@ import {api_key} from  '../../Keys'
 
 
 
-const PersonCredit = ({credits,dept}) => {
+const PersonCredit = ({dept}) => {
 
     const {id} = useParams();
     const [{CombinedCredits}, dispatch] = useReducer(personReducer, initialState);
@@ -32,12 +32,12 @@ const PersonCredit = ({credits,dept}) => {
     let filterMovie = CombinedCredits.length === 0 ? (null):(
         CombinedCredits.cast.filter(cred => {return cred.media_type === "movie"})
      )
-     let filterTV = CombinedCredits.length === 0 ? (<div>wala</div>):(
+     let filterTV = CombinedCredits.length === 0 ? (null):(
         CombinedCredits.cast.filter(cred => {return cred.media_type === "tv"})
      )
 
    
-
+       
     let cre =  CombinedCredits.cast === undefined ? (null):(
 
         CombinedCredits.cast.length === 0 ? (
@@ -56,11 +56,11 @@ const PersonCredit = ({credits,dept}) => {
                     <div>
                         <div className="bg-color">
                         {
-                            CombinedCredits.backdrop_path === null ? (<img src={noimage}/>) 
+                            cast.backdrop_path === null ? (<img src={noimage}/>) 
                             : 
                             ( 
                                 <Link to={`/movie/${cast.id}`}>
-                                <img src={'https://image.tmdb.org/t/p/w300_and_h450_bestv2'+cast.backdrop_path}/>
+                                <img src={'https://image.tmdb.org/t/p/w300_and_h450_bestv2'+cast.backdrop_path} alt={cast.original_title}/>
                                 </Link>
                                 )
                         }
@@ -92,8 +92,8 @@ const PersonCredit = ({credits,dept}) => {
     return(
         <Fragment>
             
-            <div className="">
-                <h4>Known For:</h4>
+            <div className="p-known">
+                <h3>Known For:</h3>
                 {cre}
             </div>
 

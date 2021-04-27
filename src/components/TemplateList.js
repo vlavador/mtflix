@@ -1,28 +1,25 @@
 import React,{Fragment} from 'react'
 import MovieLists from './Movie/MovieLists';
-import TelevisionLists from  './Television/TelevisionList'
+import TelevisionLists from  './Television/TelevisionLists'
+import PersonList from  './Person/PersonList'
 import { Link } from 'react-router-dom'
+import {getCreated} from './functions'
 
-function TemplateList({data,totalpages,page,category,link}) {
+function TemplateList({data,totalpages,page,category,link,pagetype}) {
 
-    const getCreated = (date) => {
-
-        let dates = new Date(date)
-        const mlist = [ "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ];
-        return `${mlist[dates.getMonth()]} ${dates.getUTCDate()}, ${dates.getUTCFullYear()}`   
-    } 
+   
 
     return (
         <section className="container">
         <div className="flex" style={{"alignItems:": "center"}}>
             <div style={{"flexGrow": "8"}}>
-                <h2 style={{"margin":"0px"}}>Popular Movies</h2>
+                <h3  className="pagetype">{pagetype}</h3>
             </div>
-            <div>
+            <div  className="pagedesign">
             {
                 totalpages === null ? (null) : (
                     <Fragment>
-                    <span className="pagedesign">Page:</span>
+                    <span>Page:</span>
                     <span>{page}/{totalpages}</span>
                     </Fragment>
 
@@ -31,14 +28,13 @@ function TemplateList({data,totalpages,page,category,link}) {
                
             </div>
         </div>
-        <ul className="movie-tv grid ">
-        {
-            category == "movie" ?
-            ( <MovieLists  movieList = {data}  Created={getCreated}/>)
-            :
-            ( <TelevisionLists  televisionList = {data}  Created={getCreated}/>) 
-          
-        }
+        <ul className={` ${category === "person" ? "grid searh-person-grid" : "movie-tv grid"}`}>
+            {category === "television" ? ( <TelevisionLists televisionList = {data}  Created={getCreated} />) :  null}
+            {category === "movie" ? ( <MovieLists  movieList = {data}  Created={getCreated} />) :  null}
+              
+                {category === "person" ? ( <PersonList Person = {data}  />) :  null}    
+
+     
         
         </ul>
         <div className="container text-right padding-zero">

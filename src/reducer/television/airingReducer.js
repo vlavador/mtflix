@@ -17,10 +17,10 @@ export const airingReducer = (state,action) => {
                 
             }
             return state;
-            break;
+            
         
         case 'FETCH_ERROR_AIRING_TELEVISION':
-            console.log(action.payload)
+          
             state = {
                 ...state,
                  error:true,
@@ -29,7 +29,7 @@ export const airingReducer = (state,action) => {
                
             }
             return state;
-            break;
+            
 
         case 'CLEAR_AIRING_TELEVISION':
            
@@ -40,9 +40,9 @@ export const airingReducer = (state,action) => {
                     
                 }
                 return state;
-                break;
+                
     
         default:
-            break;
+            return state;
     }
 }

@@ -7,7 +7,7 @@ export const initialState = {
 export const popularReducer = (state,action) => {
     switch (action.type) {
         case 'FETCH_POPULAR_MOVIE':
-            console.log(action.payload)
+           
             state = {
                 ...state,
                 PopularMovies:action.payload.results,
@@ -15,19 +15,17 @@ export const popularReducer = (state,action) => {
                 page:action.payload.page
             }
             return state;
-            break;
+         
         
             case 'FETCH_ERROR_POPULAR_MOVIE':
-                console.log(action.payload)
+            
                 state = {
                     ...state,
                      error:true,
-                    PopularMovies:action.payload
-                  
-                   
+                    PopularMovies:action.payload     
                 }
                 return state;
-                break;
+             
     
             case 'CLEAR_POPULAR_MOVIE':
                     state = {
@@ -35,11 +33,11 @@ export const popularReducer = (state,action) => {
                         PopularMovies:action.payload
                     }
                     return state;
-                    break;
+                 
 
             
         
             default:
-                break;
+                return state;
         }
     }

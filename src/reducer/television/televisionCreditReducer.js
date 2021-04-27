@@ -12,7 +12,7 @@ export const televisionCreditReducer = (state,action) => {
             }
          
             return state;
-            break;
+           
 
         case 'CLEAR_TELEVISION_CREDIT':
   
@@ -21,10 +21,10 @@ export const televisionCreditReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+               
         
     
         default:
-            break;
+            return state;
     }
 }

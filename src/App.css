@@ -2,18 +2,109 @@
     margin: 10px auto;
     padding: 0px 15px;
 }
+.navbar-dark .navbar-nav .nav-link{
+    color:#fff;
+}
+.height{
+    height: 400px;
+    padding-top: 20px;
+}
+
 .grid{
     display: grid;
 }
 .spinner-design{
     text-align: center;
-    padding: 100px 0px;
+    padding: 200px 0px;
+}
+/**Movie Details css*/
+.moviedetailscolor{
+    color:#fff;
+}
+.m20{
+    margin: 20px 0px;
+}
+.feature-crew h3{
+
+    font-weight: 600;
+    line-height: 1.3em;
+    font-size: 1.3em;
+}
+.overview-info {
+    margin: 30px auto;
+}
+/**Home  css*/
+.right-float{
+    float: right;
+}
+
+.search-btn{
+    font-size: 12px;
+    color: #fff;
+    background-color: #212121;
+    padding: 5px 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 28px;
+    transition: ease .3s all;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0px 5px;
+}
+.custom-search-input{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.custom-search-input:focus{
+    border: 1px solid #ced4da;
+    box-shadow: none;
+    outline-offset: 0px;
+    outline: none;
+}
+.custom-search-button
+{
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+  
+    background-color: #097ddc;
+    color: #fff;
+    border: 1px solid #097ddc;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.custom-search-button:hover{
+    background-color: #097ddc;  
+}
+
+.home-grid{
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 20px;
+}
+.img-responsive{
+    max-width: 100%;
+    height: auto;
+}
+.home-grid ul{
+  
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+.home-grid li{
+    position: relative;
+}
+.home-grid p{
+    margin: 0px;
+    position: absolute;
+    bottom: .1rem;
+    left: 1rem;
+}
+/**Override css*/
+.card-bodys{
+    padding: .5rem 0rem ;
 }
 /**Home Css*/
-.home-grid{
-    
- 
-}
+
 .upcoming-home{
     overflow-y: hidden;
     overflow-x: scroll;
@@ -35,19 +126,19 @@
     gap: 10px;
 }
 
-.nowplaying-home img{
-    
-    
+
+.bottom10{
+    margin-bottom: 10px!important;
 }
 
-.home-8-13
-.ul-genre-design {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 0px;
-    margin-bottom: 0px;
+.ul-genre-design{
+display: flex;
+    padding: 0px!important;
+}
+.li-genre-design{
+ word-break: break-all;
+ list-style: none;
+ margin: 10px 0;
 }
 
 .genre-design {
@@ -70,6 +161,7 @@
 .header-title{
     font-size: 1.6em!important;
     font-weight: 600;
+    margin:10px 0px!important;
 }
 .bg-color img{
     background-color: #dbdbdb;
@@ -118,13 +210,132 @@
     margin-bottom: 0px!important;
     margin-top: 20px!important;
 }
+/**Seach style*/
+.search-grid{
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 20px;
+    padding:0px;
+}
+
+.search-grid li{
+    border-radius: 4px;
+    list-style: none;
+    border: 1px solid #e3e3e3;
+    
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
+.result-design{
+    display: flex;
+}
+.result-design a{
+    min-width: 94px;
+    color: #000;
+}
+.result-design img{
+    background-color: #dbdbdb;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.result-content{
+    padding: 0px 10px;
+}
+.result-content p{
+  
+
+    text-decoration: none;
+    max-height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    width: 125px;
+    font-weight: 700;
+    font-size: .9em;
+    margin-top: 10px;
+}
+.result-content span{
+    display: block;
+    height: 70px;
+    word-wrap: break-word;
+    white-space: normal;
+
+    font-size: 0.9em;
+    line-height: 1.2em;
+    margin-top: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.searh-person-grid{
+    grid-template-columns: repeat(5,1fr);
+    grid-gap: 20px;
+        padding: 0px;
+}
+.known-list{
+    padding: 0px 10px 12px 10px;
+    white-space: normal;
+    
+}
+.known-list p {
+    margin:0px;
+    font-weight:600;
+    font-size: 1em;
+    color: #000;
+}
+.known-design{
+    padding: 0px;
+}
+
+.known-design li{
+    list-style: none;
+    padding-left: 5px;
+    white-space: nowrap;
+    max-width: 170px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+}
+.known-design a{
+    text-decoration: none;
+    color:#000;
+}
+
+.search-li{
+    list-style: none;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+.search-person img{
+    max-width: 100%;
+    height: auto;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.search-person-content{
+    padding: 15px 10px 12px 10px;
+    white-space: normal;
+    
+}
+
+.search-person-content a{
+    color: #000;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
+}
+
 
 /**Movie Content design*/
+.border-content{
+    border-bottom: 1px solid rgb(215, 215, 215);
+}
 .movie-tv-content{
     padding: 15px 10px 12px 10px;
     white-space: normal;
     grid-template-columns: 4fr 1fr;
-    gap:20px
+    gap:20px;
+  
 }
 .movie-tv-content h2{
 margin: 0px;
@@ -149,7 +360,14 @@ overflow-wrap: break-word
 margin: 0px;
 
 }
-
+.pagetype{
+    margin:10px 0px;
+    font-size: 1.5em!important;
+    font-weight: 600;
+}
+.pagedesign{
+    margin:10px 0px;
+}
 /**Movie Details CSS**/
 .Movie-Tv-Background{
     padding: 40px 0px;
@@ -164,7 +382,7 @@ margin: 0px;
 .movie-tv-review{
     margin: 20px 0px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgb(215, 215, 215);
+    
 }
 .posters {
     display: block;
@@ -186,6 +404,9 @@ margin: 0px;
   
 }
 /**MovieCrew.js css */
+.crewdesign{
+    margin-bottom: 10px;
+}
 .crewdesign p:first-child {
     font-weight: 800;
     margin-bottom: 0px;
@@ -195,7 +416,9 @@ margin: 0px;
     margin-bottom: 0px;
     font-size: 1em;
     text-decoration: none;
-    color:#000
+
+
+    color:#fff;
 }
 .movie-tv-crew{
     grid-template-columns: repeat(3,3fr);
@@ -254,7 +477,7 @@ width:200px;
 .reviewauthor{
     font-size: 1.3em!important;
     font-weight: 700;
-    margin-bottom: 1em!important;
+    margin-bottom: .3em!important;
 }
 .review-content{
     background-color: #fff;
@@ -283,7 +506,7 @@ width:200px;
     font-weight: 700;
 }
 .reviewcontent {
-    height: 107px;
+    height: 115px;
     white-space: normal;
     color: rgb(77, 77, 77);
     font-size: 1.1em!important;
@@ -448,7 +671,7 @@ font-size: 1em;
 font-weight:700;
 }
 
-.card-body{
+.card-bodys{
   
 
     white-space: normal;
@@ -459,7 +682,7 @@ font-weight:700;
     text-overflow: ellipsis;
     overflow-wrap: anywhere;
 }
-.card-body p{
+.card-bodys p{
     font-size: 1em;
 }
 /**All Review*/
@@ -473,7 +696,7 @@ font-weight:700;
 .review-grid ul li{
     list-style: none;
 }
-.card{
+.cards{
     margin-bottom: 20px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px ;
     background-color: #fff;
@@ -504,7 +727,7 @@ margin:10px 0px 0px 0px;
 .btn-design{
     font-size: 12px;
     color: #fff;
-    background-color: #212121;
+    background-color: #097ddc;
     padding: 5px 15px;
     font-weight: 600;
     text-transform: uppercase;
@@ -514,6 +737,10 @@ margin:10px 0px 0px 0px;
     border-radius: 5px;
     margin: 0px 5px;
 }
+.btn-design:hover{
+    text-decoration: none;
+    color:#fff;
+}
 .text-right{
     text-align: right;
 }
@@ -521,8 +748,11 @@ margin:10px 0px 0px 0px;
     text-align: left;
 }
 .section-bg{
-    background-color: #343a40!important;
+    background-color:  #043862!important;
   
+}
+.bg-dark {
+    background-color: #043862!important;
 }
 .footer-padding{
     padding: 40px 0px;
@@ -563,15 +793,28 @@ padding: 5px 0px;
     .review-design{
         grid-template-columns: repeat(2,1fr);
     }
+
+    .search-grid{
+        grid-template-columns: repeat(3,1fr);
+    }
+    
 }
 
 @media only screen and (max-width: 991px) {
-    
+    .movie-tv-details{
+        grid-template-columns: 2fr 3fr;
+    }
    .movie-tv-content{
     grid-template-columns: 1fr
    }
+   .search-grid{
+    grid-template-columns: repeat(2,1fr);
+}
    
-  
+.searh-person-grid{
+    grid-template-columns: repeat(3,1fr);
+}
+
     .cast-design {
         grid-template-columns: repeat(4,1fr);
         
@@ -592,6 +835,13 @@ padding: 5px 0px;
     }
     .movie-tv{
         grid-template-columns: repeat(3,1fr);
+    }
+    .movie-tv-detailtitle{
+        font-size: 1.7rem;
+        margin-top: 20px;
+    }
+    .movie-tv-detailscolor{
+        text-align: center;
     }
     .cast-design {
         grid-template-columns: repeat(3,1fr);
@@ -634,19 +884,38 @@ padding: 5px 0px;
 
         
     }
+    .movie-tv-crew {
+        grid-template-columns: repeat(2,2fr);
+    }
+    .movie-tv-content a{
+        margin:10px 0px;
+    }
+
+    .searh-person-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
     .cast-design li {
         width: 95%!important;
         margin: 0 auto;
     }
     .movie-tv-content {
-        padding: 0px;
+        padding: 5px 10px;
     }
     .content{
         padding: 0 15px 10px 15px;
     }
     .custom-padding{padding:.5em;}
+
+
     
 
+}
+
+@media only screen and (max-width:525px) {
+
+    .search-grid{
+        grid-template-columns: repeat(1,1fr);
+    }
 }
 @media only screen and (max-width: 420px) {
     .allcastgrid{

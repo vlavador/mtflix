@@ -19,7 +19,7 @@ export function MovieProvider({children}) {
      
     }, [id])
 
-   console.log(movie)
+  
     return (
         <MovieContext.Provider value={movie}>
             <MovieDetails />

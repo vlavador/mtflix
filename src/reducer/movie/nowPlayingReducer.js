@@ -1,4 +1,4 @@
-export const initialState = {
+export const nowPlayingState = {
     NowPlayingMovies:[],
     totalpages:1,
     page:0,
@@ -17,10 +17,10 @@ export const nowPlayingReducer = (state,action) => {
                 
             }
             return state;
-            break;
+      
         
         case 'FETCH_ERROR_NOW_PLAYING_MOVIE':
-            console.log(action.payload)
+           
             state = {
                 ...state,
                  error:true,
@@ -29,7 +29,7 @@ export const nowPlayingReducer = (state,action) => {
                
             }
             return state;
-            break;
+      
 
         case 'CLEAR_NOW_PLAYING_MOVIE':
            
@@ -40,9 +40,9 @@ export const nowPlayingReducer = (state,action) => {
                     
                 }
                 return state;
-                break;
+          
     
         default:
-            break;
+            return state;
     }
 }

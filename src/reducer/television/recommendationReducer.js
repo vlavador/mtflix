@@ -12,7 +12,7 @@ export const recommendationReducer = (state,action) => {
             }
          
             return state;
-            break;
+            
 
         case 'CLEAR_RECOMMENDATION_TELEVSION':
   
@@ -21,11 +21,11 @@ export const recommendationReducer = (state,action) => {
                 }
              
                 return state;
-                break;
+                
             
         
     
         default:
-            break;
+            return state;
     }
 }
