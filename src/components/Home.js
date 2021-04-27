@@ -1,8 +1,5 @@
-import { Fragment, useReducer,useEffect } from 'react';
-import {initialState,onAirReducer} from '../reducer/television/onAirReducer'
-import {nowPlayingState,nowPlayingReducer} from '../reducer/movie/nowPlayingReducer'
-import {upcomingMovieState,upcomingReducer} from '../reducer/movie/upcomingmovie'
-import {api_key} from  '../Keys'
+import { Fragment } from 'react';
+
 import Banner from './Home/Banner';
 import '../css/home.css'
 import HomePopular from './Home/HomePopular';
