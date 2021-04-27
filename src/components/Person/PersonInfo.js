@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom';
+
 import noImg from '../../assets/noimage.png'
 import{addSpace} from '../functions'
 const PersonInfo = ({details}) =>{
@@ -30,7 +30,7 @@ const PersonInfo = ({details}) =>{
                     {addSpace(details.biography)}
                     </div>
                   
-                    <a href={`https://www.themoviedb.org/person/${details.id}`} target="_blank" >Read More...</a>
+                    <a href={`https://www.themoviedb.org/person/${details.id}`} target="_blank" rel="noreferrer" >Read More...</a>
                 </Fragment>)
             }
            

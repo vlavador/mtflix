@@ -30,7 +30,7 @@ export default function AllCast() {
         .catch(err => dispatch({type:'FETCH_NULLMOVIEDETAIL',payload:null}))
 
       return () => abortCont.abort();
-    }, [])
+    },[])
 
     //Fetching Movie Credits
     useEffect(() => {
@@ -56,12 +56,12 @@ export default function AllCast() {
                     <Fragment>
                         {
                             cast.gender === 1 ? 
-                            (<img src={f66} className="noImage"/>):
-                            (<img src={m66} className="noImage"/>)
+                            (<img src={f66} className="noImage" alt={cast.name}/>):
+                            (<img src={m66} className="noImage" alt={cast.name}/>)
                         }
                         </Fragment>  
                 ) : (
-                    <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+cast.profile_path}/>
+                    <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+cast.profile_path} alt={cast.name}/>
                 )
             }
             </Link>

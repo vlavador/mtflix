@@ -8,12 +8,11 @@ import { Link } from "react-router-dom";
 import {nextPage,previousPage} from './functions'
 const TVResultList = () => {
 
-    const [ID, setID] = useState(1);
     const {name,type} = useParams()
     const [{Series,page,total_pages,total_results},dispatch] = useReducer(resultReducer,initialState)
     useEffect(() => {
         const abortCont = new AbortController();
-        setID(1)
+    
         dispatch({type:'CLEAR_TV_RESULTS',payload:[]})
         fetch(`https://api.themoviedb.org/3/search/tv?api_key=${api_key}&query=${name}&page=1`,{signal:abortCont.signal})
         .then(res => res.json())

@@ -20,7 +20,7 @@ const MovieRecommendation = () => {
        
  
     }, [id])
-    let movieRecommendation =  Recommendation.length != 0 ? (
+    let movieRecommendation =  Recommendation.length !== 0 ? (
         <Fragment>    
 
         <ul className="recommendation grid">

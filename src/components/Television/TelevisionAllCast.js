@@ -1,4 +1,4 @@
-import React, { Component, Fragment,useEffect,useReducer } from 'react'
+import React, {Fragment,useEffect,useReducer } from 'react'
 
 import {Link,useParams} from 'react-router-dom'
 
@@ -7,7 +7,7 @@ import f66 from  '../../assets/f66.png';
 import nobg from  '../../assets/nobg.png';
 
 import { televisionDetailsReducer,initialState } from '../../reducer/television/televisionDetailsReducer'
-import axios from 'axios';
+
 import {api_key} from  '../../Keys'
 import {televisionCreditReducer,creditState} from '../../reducer/television/televisionCreditReducer';
 export default function TelevisionAllCast(){
@@ -77,13 +77,13 @@ export default function TelevisionAllCast(){
                         <Fragment>
                         {
                             crew.gender === 1 ? 
-                            (<img src={f66} className="noImage"/>):
-                            (<img src={m66} className="noImage"/>)
+                            (<img src={f66} className="noImage" alt={crew.original_name}/>):
+                            (<img src={m66} className="noImage" alt={crew.original_name}/>)
                         }
                         </Fragment>
                       
                     ) : (
-                        <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+crew.profile_path}/>
+                        <img src={'https://image.tmdb.org/t/p/w66_and_h66_face'+crew.profile_path} alt={crew.original_name}/>
                     )
                 }
                 </Link>
@@ -113,9 +113,9 @@ export default function TelevisionAllCast(){
                             <div>
                                 {TelevisionDetails.poster_path === null ? 
                                 (
-                                    <img src={nobg} className="noImage"/> 
+                                    <img src={nobg} className="noImage" alt={TelevisionDetails.original_name}/> 
                                 ) : (
-                                    <img src={'https://image.tmdb.org/t/p/w116_and_h174_face'+TelevisionDetails.poster_path}/>
+                                    <img src={'https://image.tmdb.org/t/p/w116_and_h174_face'+TelevisionDetails.poster_path} alt={TelevisionDetails.original_name}/>
                                 )
                                 }
                             </div>

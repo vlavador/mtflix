@@ -1,6 +1,6 @@
 
-import { Link,useParams } from 'react-router-dom'
-import React, { Component,Fragment,useReducer,useEffect } from 'react'
+
+import React from 'react'
 
 
 import SkeletonMovie from './skeletons/SkeletonMovie'

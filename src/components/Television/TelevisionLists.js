@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react'
 import {Link} from 'react-router-dom'
-import nomoviebg from '../../assets/nomoviebg.svg'
+
 import test from '../../assets/TEST.png'
 const TelevisionLists = ({televisionList,Created}) => {
 

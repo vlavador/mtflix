@@ -29,7 +29,7 @@ const PersonList = ({Person}) => {
                             <ul className="known-design">{
                                 person.known_for.map((p,index) => 
                                 {
-                                    return p.media_type == "movie" ? (  <li key={index}><Link to={'/movie/' +p.id}>{p.title}</Link></li>) : (  <li key={index}><Link to={'/tv/' +p.id}>{p.original_name}</Link></li>)
+                                    return p.media_type === "movie" ? (  <li key={index}><Link to={'/movie/' +p.id}>{p.title}</Link></li>) : (  <li key={index}><Link to={'/tv/' +p.id}>{p.original_name}</Link></li>)
                                 }
                                 
                                 )

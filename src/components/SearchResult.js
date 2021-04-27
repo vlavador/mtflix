@@ -1,5 +1,3 @@
-import { useEffect, useReducer, useState } from "react";
-
 import { useParams } from "react-router";
 import MovieResultList from "./MovieResultList";
 import PersonResultList from "./PersonResultList";

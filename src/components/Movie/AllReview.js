@@ -87,7 +87,7 @@ export default function AllReview(){
                                     <div>
                                         {MovieDetails.poster_path === null ? 
                                         (
-                                            <img src={nullCast} className="noImage"/> 
+                                            <img src={nullCast} className="noImage" alt={MovieDetails.title}/> 
                                         ) : (
                                             <img src={'https://image.tmdb.org/t/p/w116_and_h174_face'+MovieDetails.poster_path} alt={MovieDetails.title}/>
                                         )

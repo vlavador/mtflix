@@ -19,7 +19,7 @@ const SimilarMovies = () => {
   
  
     }, [id])
-    let similarmovie =  Similar.length != 0 ? (
+    let similarmovie =  Similar.length !== 0 ? (
         <Fragment>
        
             <ul className="similar grid">

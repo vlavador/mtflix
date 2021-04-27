@@ -1,4 +1,4 @@
-import React, { Component,Fragment,useEffect,useReducer } from 'react'
+import React, {Fragment,useEffect,useReducer } from 'react'
 
 import TelevisionCast from './TelevisionCast'
 import TelevisionCrew from './TelevisionCrew'

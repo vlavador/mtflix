@@ -9,13 +9,12 @@ import {Link} from 'react-router-dom'
 import test from '../assets/TEST.png'
 import {nextPage,previousPage} from './functions'
 const PersonResultList = () => {
-    const [ID, setID] = useState(1);
+   
     const {name,type} = useParams()
     const [{Person,page,total_pages,total_results},dispatch] = useReducer(resultReducer,initialState)
 
     useEffect(() => {
-      
-        setID(1)
+     
         dispatch({type:'CLEAR_PERSON_RESULTS',payload:[]})
         fetch(`https://api.themoviedb.org/3/search/person?api_key=${api_key}&query=${name}`)
         .then(res => res.json())
@@ -57,7 +56,7 @@ const PersonResultList = () => {
                         <ul className="known-design">{
                             person.known_for.map((p,index) => 
                             {
-                                return p.media_type == "movie" ? (  <li key={index}><Link to={'/movie/' +p.id}>{p.title}</Link></li>) : (  <li key={index}><Link to={'/tv/' +p.id}>{p.original_name}</Link></li>)
+                                return p.media_type === "movie" ? (  <li key={index}><Link to={'/movie/' +p.id}>{p.title}</Link></li>) : (  <li key={index}><Link to={'/tv/' +p.id}>{p.original_name}</Link></li>)
                             }
                             
                             )

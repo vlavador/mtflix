@@ -1,4 +1,4 @@
-import { Fragment,useEffect, useReducer, useState } from "react";
+import { Fragment,useEffect, useReducer } from "react";
 import {resultReducer,initialState} from '../reducer/searchresult/resultReducer'
 import { useParams } from "react-router";
 import {api_key} from  '../Keys'
@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 import {nextPage,previousPage} from './functions'
 
 const MovieResultList = () => {
-    const [ID, setID] = useState(1);
+ 
     const {name,type} = useParams()
     const [{movie,page,total_pages,total_results},dispatch] = useReducer(resultReducer,initialState)
 
     useEffect(() => {
         const abortCont = new AbortController();
-        setID(1)
+    
         dispatch({type:'CLEAR_MOVIE_RESULTS',payload:[]})
         fetch(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${name}`,{signal:abortCont.signal})
         .then(res => res.json())

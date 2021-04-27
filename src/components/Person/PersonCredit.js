@@ -56,7 +56,7 @@ const PersonCredit = ({dept}) => {
                     <div>
                         <div className="bg-color">
                         {
-                            cast.backdrop_path === null ? (<img src={noimage}/>) 
+                            cast.backdrop_path === null ? (<img src={noimage} alt={cast.original_title}/>) 
                             : 
                             ( 
                                 <Link to={`/movie/${cast.id}`}>
